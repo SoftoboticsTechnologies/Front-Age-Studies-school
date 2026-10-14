@@ -1,13 +1,17 @@
 {
   "mandatoryDisclosure": [
     {
-      "id": "trust-paper",
-      "title": "Trust Paper",
+      "id": "recognition-letter",
+      "title": "Recognition Letter",
       "session": "",
-      "file": "/uploads/documents/trust-paper.pdf",
+      "file": "/uploads/documents/recognition-letter.pdf",
       "updated": "",
       "visible": true,
-      "order": 1
+      "order": 1,
+      "format": "PDF",
+      "pages": 2,
+      "bytes": 915865,
+      "thumb": "assets/images/docs/recognition-letter.jpg"
     },
     {
       "id": "fire-safety",
@@ -16,34 +20,11 @@
       "file": "/uploads/documents/fire-safety.pdf",
       "updated": "",
       "visible": true,
-      "order": 2
-    },
-    {
-      "id": "recognition-letter",
-      "title": "Recognition Letter",
-      "session": "",
-      "file": "/uploads/documents/recognition-letter.pdf",
-      "updated": "",
-      "visible": true,
-      "order": 3
-    },
-    {
-      "id": "safe-drinking-water",
-      "title": "Safe Drinking Water and Sanitary Condition",
-      "session": "",
-      "file": "/uploads/documents/safe-drinking-water.pdf",
-      "updated": "",
-      "visible": true,
-      "order": 4
-    },
-    {
-      "id": "water-sanitary-report",
-      "title": "Water Sanitary Report",
-      "session": "",
-      "file": "/uploads/documents/water-sanitary-report.pdf",
-      "updated": "",
-      "visible": true,
-      "order": 5
+      "order": 2,
+      "format": "PDF",
+      "pages": 1,
+      "bytes": 1402454,
+      "thumb": "assets/images/docs/fire-safety.jpg"
     },
     {
       "id": "building-safety-certificate",
@@ -52,7 +33,37 @@
       "file": "/uploads/documents/building-safety-certificate.pdf",
       "updated": "",
       "visible": true,
-      "order": 6
+      "order": 3,
+      "format": "PDF",
+      "pages": 1,
+      "bytes": 2410224,
+      "thumb": "assets/images/docs/building-safety-certificate.jpg"
+    },
+    {
+      "id": "safe-drinking-water",
+      "title": "Safe Drinking Water and Sanitary Condition",
+      "session": "",
+      "file": "/uploads/documents/safe-drinking-water.pdf",
+      "updated": "",
+      "visible": true,
+      "order": 4,
+      "format": "PDF",
+      "pages": 1,
+      "bytes": 2645648,
+      "thumb": "assets/images/docs/safe-drinking-water.jpg"
+    },
+    {
+      "id": "water-sanitary-report",
+      "title": "Water Sanitary Report",
+      "session": "",
+      "file": "/uploads/documents/water-sanitary-report.pdf",
+      "updated": "",
+      "visible": true,
+      "order": 5,
+      "format": "PDF",
+      "pages": 1,
+      "bytes": 600365,
+      "thumb": "assets/images/docs/water-sanitary-report.jpg"
     },
     {
       "id": "total-buildup-area",
@@ -61,7 +72,11 @@
       "file": "/uploads/documents/total-buildup-area.pdf",
       "updated": "",
       "visible": true,
-      "order": 7
+      "order": 6,
+      "format": "PDF",
+      "pages": 1,
+      "bytes": 2212652,
+      "thumb": "assets/images/docs/total-buildup-area.jpg"
     },
     {
       "id": "certificate-of-land",
@@ -70,7 +85,24 @@
       "file": "/uploads/documents/certificate-of-land.pdf",
       "updated": "",
       "visible": true,
-      "order": 8
+      "order": 7,
+      "format": "PDF",
+      "pages": 1,
+      "bytes": 2129756,
+      "thumb": "assets/images/docs/certificate-of-land.jpg"
+    },
+    {
+      "id": "trust-paper",
+      "title": "Trust Paper",
+      "session": "",
+      "file": "/uploads/documents/trust-paper.pdf",
+      "updated": "",
+      "visible": true,
+      "order": 8,
+      "format": "PDF",
+      "pages": 26,
+      "bytes": 19615978,
+      "thumb": "assets/images/docs/trust-paper.jpg"
     },
     {
       "id": "calendar-2026-27",
@@ -79,7 +111,11 @@
       "file": "/uploads/documents/calendar-2026-27.pdf",
       "updated": "",
       "visible": true,
-      "order": 9
+      "order": 9,
+      "format": "PDF",
+      "pages": 6,
+      "bytes": 454514,
+      "thumb": "assets/images/docs/calendar-2026-27.jpg"
     },
     {
       "id": "holiday-ph-std-3",
@@ -88,7 +124,11 @@
       "file": "/uploads/documents/holiday-ph-to-std-3.pdf",
       "updated": "",
       "visible": true,
-      "order": 10
+      "order": 10,
+      "format": "PDF",
+      "pages": 5,
+      "bytes": 541332,
+      "thumb": "assets/images/docs/holiday-ph-std-3.jpg"
     },
     {
       "id": "holiday-std-4-10",
@@ -97,7 +137,11 @@
       "file": "/uploads/documents/holiday-std-4-to-10.pdf",
       "updated": "",
       "visible": true,
-      "order": 11
+      "order": 11,
+      "format": "PDF",
+      "pages": 5,
+      "bytes": 544546,
+      "thumb": "assets/images/docs/holiday-std-4-10.jpg"
     },
     {
       "id": "self-declaration",

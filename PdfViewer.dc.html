@@ -7,8 +7,8 @@
 </head>
 <body>
 <x-dc>
-<div ref="{{ rootRef }}" style="position:relative;display:flex;flex-direction:column;width:100%;height:{{ h }};background:#525659;border-radius:6px;overflow:hidden;box-shadow:0 14px 30px -18px rgba(0,0,0,.55)">
-  <div style="flex:none;display:flex;align-items:center;gap:6px;height:42px;padding:0 8px;background:#38383D;color:#F1F1F1;font-family:system-ui,sans-serif;font-size:13.5px">
+<div ref="{{ rootRef }}" role="region" aria-label="PDF preview" style="position:relative;display:flex;flex-direction:column;width:100%;height:{{ h }};min-height:420px;background:#525659;border:1px solid #D6CDBC;border-radius:10px;overflow:hidden">
+  <div style="flex:none;display:flex;align-items:center;gap:6px;height:42px;padding:0 8px;background:#38383D;color:#F1F1F1;font-family:'Public Sans',system-ui,sans-serif;font-size:13.5px">
     <input aria-label="Page number" value="{{ pageVal }}" onChange="{{ onPageInput }}" onKeyDown="{{ onPageKey }}" style="width:52px;height:28px;border-radius:4px;border:1px solid #6B6B70;background:#2A2A2E;color:#fff;text-align:right;padding:0 8px;font:inherit"/>
     <span style="white-space:nowrap;opacity:.9">of {{ n }}</span>
     <span style="flex:1"></span>
@@ -17,7 +17,7 @@
     <button onClick="{{ zoomIn }}" aria-label="Zoom in" style="width:30px;height:30px;border:0;border-radius:4px;background:transparent;color:#fff;font-size:20px;cursor:pointer" style-hover="background:#4A4A50">+</button>
     <span style="flex:1"></span>
     <button onClick="{{ fullscreen }}" aria-label="Fullscreen" style="width:30px;height:30px;border:0;border-radius:4px;background:transparent;color:#fff;font-size:16px;cursor:pointer" style-hover="background:#4A4A50">⛶</button>
-    <a href="{{ src }}" target="_blank" rel="noopener" aria-label="Open or download PDF" style="width:30px;height:30px;border-radius:4px;color:#fff;display:grid;place-items:center;font-size:16px;text-decoration:none" style-hover="background:#4A4A50;color:#fff">⤓</a>
+    <a href="{{ src }}" target="_blank" rel="noopener" aria-label="Open or download PDF" style="width:30px;height:30px;border-radius:4px;color:#fff;display:grid;place-items:center;font-size:16px;text-decoration:none" style-hover="background:#4A4A50;color:#fff"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i></a>
   </div>
   <div ref="{{ scrollRef }}" onScroll="{{ onScroll }}" style="flex:1;min-height:0;overflow-x:auto;overflow-y:scroll;scrollbar-gutter:stable;-webkit-overflow-scrolling:touch">
     <div ref="{{ pagesRef }}" onClick="{{ onPagesClick }}" title="{{ linkTitle }}" style="cursor:{{ pagesCursor }};display:flex;flex-direction:column;align-items:center;gap:12px;padding:14px 16px;min-width:min-content"></div>
@@ -28,9 +28,9 @@
     </div>
   </sc-if>
   <sc-if value="{{ error }}" hint-placeholder-val="{{ false }}">
-    <div style="position:absolute;left:0;right:0;top:42px;bottom:0;display:flex;flex-direction:column;gap:12px;align-items:center;justify-content:center;color:#fff;font-family:'Nunito',sans-serif;text-align:center;padding:20px">
-      <span style="font-weight:700">The preview could not load here.</span>
-      <a href="{{ src }}" target="_blank" rel="noopener" style="font-weight:800;color:#12306E;background:#FFC93C;padding:9px 18px;border-radius:999px">Open PDF</a>
+    <div style="position:absolute;left:0;right:0;top:42px;bottom:0;display:flex;flex-direction:column;gap:12px;align-items:center;justify-content:center;color:#fff;font-family:'Public Sans',system-ui,sans-serif;text-align:center;padding:20px">
+      <span style="font-weight:600">The preview could not load here.</span>
+      <a href="{{ src }}" target="_blank" rel="noopener" style="font-weight:600;color:#0B1F4A;background:#E3A72F;padding:11px 20px;border-radius:6px">Open PDF</a>
     </div>
   </sc-if>
 </div>
