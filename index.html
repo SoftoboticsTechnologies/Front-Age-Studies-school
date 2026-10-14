@@ -440,7 +440,7 @@
               <div><div class="glance-name">FRONT – AGE STUDIES</div><div class="glance-motto">ADMISSION OPEN</div></div>
             </div>
             <dl>
-              <div class="glance-row"><dt>Session</dt><dd>{{ banner }}</dd></div>
+              <div class="glance-row"><dt>Admission</dt><dd>{{ banner }}</dd></div>
               <div class="glance-row"><dt>Classes</dt><dd>LKG to Class 5</dd></div>
             </dl>
             <div style="padding:18px 22px;border-top:1px solid var(--line);background:var(--cream)"><a class="btn btn-primary" href="#contact" onClick="{{ openEnroll }}">Enroll your kid →</a></div>
@@ -825,7 +825,7 @@
 </sc-if>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;bannerText&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Registration and Admission starts for new Session (2026 – 27).&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Content&quot;},&quot;whatsappNumber&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Content&quot;},&quot;motion&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Behavior&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;bannerText&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Enquiry for Admission&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Content&quot;},&quot;whatsappNumber&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Content&quot;},&quot;motion&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Behavior&quot;}}">
 // ---------------------------------------------------------------------------
 // PHOTOGRAPHS
 // Every school photograph used to be hot-linked from
@@ -1030,7 +1030,7 @@ class Component extends DCLogic {
 
   renderVals() {
     const s = this.state, P = this.props;
-    const banner = P.bannerText ?? 'Registration and Admission starts for new Session (2026 – 27).';
+    const banner = P.bannerText ?? 'Enquiry for Admission';
     const navPage = s.page === 'doc' ? 'mandatory-disclosure' : s.page;
     const isDocPage = s.page === 'doc';
     const cur = this.curDoc();
