@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/site.css?v=20261014">
 <script src="./support.js"></script>
 </head>
 <body>
@@ -726,7 +726,7 @@
 <div class="fab">
   <sc-if value="{{ showTop }}"><a class="fab-top" href="#top" onClick="{{ toTop }}" aria-label="Back to top"><i class="bi bi-arrow-up" aria-hidden="true"></i></a></sc-if>
   <a class="fab-call" href="tel:8804045772" aria-label="Call the school"><i class="bi bi-telephone-fill" aria-hidden="true"></i></a>
-  <a class="fab-wa" href="{{ waHref }}" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp" title="Chat with us"><i class="bi bi-whatsapp" aria-hidden="true"></i></a>
+  <a class="fab-wa" href="{{ waHref }}" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp" ><span class="fab-wa-label" aria-hidden="true">Chat with us</span><i class="bi bi-whatsapp" aria-hidden="true"></i></a>
 </div>
 
 <!-- Lightbox -->
