@@ -1,0 +1,133 @@
+{
+  "mandatoryDisclosure": [
+    {
+      "id": "trust-paper",
+      "title": "Trust Paper",
+      "session": "",
+      "file": "/uploads/documents/trust-paper.pdf",
+      "updated": "",
+      "visible": true,
+      "order": 1
+    },
+    {
+      "id": "fire-safety",
+      "title": "Fire Safety",
+      "session": "",
+      "file": "/uploads/documents/fire-safety.pdf",
+      "updated": "",
+      "visible": true,
+      "order": 2
+    },
+    {
+      "id": "recognition-letter",
+      "title": "Recognition Letter",
+      "session": "",
+      "file": "/uploads/documents/recognition-letter.pdf",
+      "updated": "",
+      "visible": true,
+      "order": 3
+    },
+    {
+      "id": "safe-drinking-water",
+      "title": "Safe Drinking Water and Sanitary Condition",
+      "session": "",
+      "file": "/uploads/documents/safe-drinking-water.pdf",
+      "updated": "",
+      "visible": true,
+      "order": 4
+    },
+    {
+      "id": "water-sanitary-report",
+      "title": "Water Sanitary Report",
+      "session": "",
+      "file": "/uploads/documents/water-sanitary-report.pdf",
+      "updated": "",
+      "visible": true,
+      "order": 5
+    },
+    {
+      "id": "building-safety-certificate",
+      "title": "Building Safety Certificate",
+      "session": "",
+      "file": "/uploads/documents/building-safety-certificate.pdf",
+      "updated": "",
+      "visible": true,
+      "order": 6
+    },
+    {
+      "id": "total-buildup-area",
+      "title": "Total Buildup Area",
+      "session": "",
+      "file": "/uploads/documents/total-buildup-area.pdf",
+      "updated": "",
+      "visible": true,
+      "order": 7
+    },
+    {
+      "id": "certificate-of-land",
+      "title": "Certificate Of Land",
+      "session": "",
+      "file": "/uploads/documents/certificate-of-land.pdf",
+      "updated": "",
+      "visible": true,
+      "order": 8
+    },
+    {
+      "id": "calendar-2026-27",
+      "title": "Calendar Year 26-27",
+      "session": "2026-27",
+      "file": "/uploads/documents/calendar-2026-27.pdf",
+      "updated": "",
+      "visible": true,
+      "order": 9
+    },
+    {
+      "id": "self-declaration",
+      "title": "Self Declaration",
+      "session": "",
+      "file": "/uploads/documents/self-declaration.pdf",
+      "legacyUrl": "https://frontagestudies.in/wp-content/uploads/2026/09/Self-Declaration.pdf",
+      "updated": "",
+      "visible": false,
+      "order": 10
+    },
+    {
+      "id": "noc-front-age-studies",
+      "title": "NOC Front Age Studies",
+      "session": "",
+      "file": "/uploads/documents/noc-front-age-studies.pdf",
+      "legacyUrl": "https://frontagestudies.in/wp-content/uploads/2026/09/NOC-Front-Age-Studies.pdf",
+      "updated": "",
+      "visible": false,
+      "order": 11
+    },
+    {
+      "id": "rent-agreement",
+      "title": "Rent Agreement",
+      "session": "",
+      "file": "/uploads/documents/rent-agreement.pdf",
+      "legacyUrl": "https://frontagestudies.in/wp-content/uploads/2026/09/Rent-Agreement.pdf",
+      "updated": "",
+      "visible": false,
+      "order": 12
+    }
+  ],
+  "holidayLists": [
+    {
+      "id": "holiday-ph-std-3",
+      "title": "Holiday List (PH to Std - 3)",
+      "file": "/uploads/documents/holiday-ph-to-std-3.pdf",
+      "updated": "",
+      "visible": true,
+      "order": 1
+    },
+    {
+      "id": "holiday-std-4-10",
+      "title": "Holiday List (Std 4 to 10)",
+      "file": "/uploads/documents/holiday-std-4-to-10.pdf",
+      "updated": "",
+      "visible": true,
+      "order": 2
+    }
+  ]
+}

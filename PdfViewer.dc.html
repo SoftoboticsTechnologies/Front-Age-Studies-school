@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<div ref="{{ rootRef }}" style="position:relative;display:flex;flex-direction:column;width:100%;height:{{ h }};background:#525659;border-radius:6px;overflow:hidden;box-shadow:0 14px 30px -18px rgba(0,0,0,.55)">
+  <div style="flex:none;display:flex;align-items:center;gap:6px;height:42px;padding:0 8px;background:#38383D;color:#F1F1F1;font-family:system-ui,sans-serif;font-size:13.5px">
+    <input aria-label="Page number" value="{{ pageVal }}" onChange="{{ onPageInput }}" onKeyDown="{{ onPageKey }}" style="width:52px;height:28px;border-radius:4px;border:1px solid #6B6B70;background:#2A2A2E;color:#fff;text-align:right;padding:0 8px;font:inherit"/>
+    <span style="white-space:nowrap;opacity:.9">of {{ n }}</span>
+    <span style="flex:1"></span>
+    <button onClick="{{ zoomOut }}" aria-label="Zoom out" style="width:30px;height:30px;border:0;border-radius:4px;background:transparent;color:#fff;font-size:20px;cursor:pointer" style-hover="background:#4A4A50">−</button>
+    <span style="min-width:44px;text-align:center;font-size:12.5px;opacity:.85">{{ zoomPct }}</span>
+    <button onClick="{{ zoomIn }}" aria-label="Zoom in" style="width:30px;height:30px;border:0;border-radius:4px;background:transparent;color:#fff;font-size:20px;cursor:pointer" style-hover="background:#4A4A50">+</button>
+    <span style="flex:1"></span>
+    <button onClick="{{ fullscreen }}" aria-label="Fullscreen" style="width:30px;height:30px;border:0;border-radius:4px;background:transparent;color:#fff;font-size:16px;cursor:pointer" style-hover="background:#4A4A50">⛶</button>
+    <a href="{{ src }}" target="_blank" rel="noopener" aria-label="Open or download PDF" style="width:30px;height:30px;border-radius:4px;color:#fff;display:grid;place-items:center;font-size:16px;text-decoration:none" style-hover="background:#4A4A50;color:#fff">⤓</a>
+  </div>
+  <div ref="{{ scrollRef }}" onScroll="{{ onScroll }}" style="flex:1;min-height:0;overflow-x:auto;overflow-y:scroll;scrollbar-gutter:stable;-webkit-overflow-scrolling:touch">
+    <div ref="{{ pagesRef }}" onClick="{{ onPagesClick }}" title="{{ linkTitle }}" style="cursor:{{ pagesCursor }};display:flex;flex-direction:column;align-items:center;gap:12px;padding:14px 16px;min-width:min-content"></div>
+  </div>
+  <sc-if value="{{ loading }}" hint-placeholder-val="{{ true }}">
+    <div style="position:absolute;left:0;right:0;top:42px;bottom:0;display:flex;justify-content:center;padding:14px 16px;pointer-events:none">
+      <div style="width:100%;max-width:620px;height:100%;border-radius:2px;background:linear-gradient(90deg,#e9e9ea 0%,#f7f7f7 50%,#e9e9ea 100%);background-size:1200px 100%;animation:fas-shimmer 1.4s linear infinite"></div>
+    </div>
+  </sc-if>
+  <sc-if value="{{ error }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;left:0;right:0;top:42px;bottom:0;display:flex;flex-direction:column;gap:12px;align-items:center;justify-content:center;color:#fff;font-family:'Nunito',sans-serif;text-align:center;padding:20px">
+      <span style="font-weight:700">The preview could not load here.</span>
+      <a href="{{ src }}" target="_blank" rel="noopener" style="font-weight:800;color:#12306E;background:#FFC93C;padding:9px 18px;border-radius:999px">Open PDF</a>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;380px&quot;,&quot;height&quot;:&quot;520px&quot;},&quot;src&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;uploads/documents/trust-paper.pdf&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;height&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;520px&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+const PDFJS = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@4.4.168/build/';
+let libP;
+const lib = () => libP || (libP = import(PDFJS + 'pdf.min.mjs').then(m => { m.GlobalWorkerOptions.workerSrc = PDFJS + 'pdf.worker.min.mjs'; return m; }));
+
+class Component extends DCLogic {
+  state = { n: 0, page: 1, pageVal: '1', zoom: 1, loading: true, error: false };
+  rootRef = React.createRef(); scrollRef = React.createRef(); pagesRef = React.createRef();
+
+  componentDidMount() {
+    this.io = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { this.io.disconnect(); this.load(); } }, { rootMargin: '400px' });
+    this.io.observe(this.rootRef.current);
+    this.fsH = () => this.layout();
+    document.addEventListener('fullscreenchange', this.fsH);
+  }
+  componentDidUpdate(pp) { if (pp.src !== this.props.src) this.load(); }
+  componentWillUnmount() { this.io && this.io.disconnect(); this.pio && this.pio.disconnect(); document.removeEventListener('fullscreenchange', this.fsH); if (this.doc) this.doc.destroy(); }
+
+  async load() {
+    const src = this.props.src;
+    if (!src) return;
+    this.setState({ loading: true, error: false, page: 1, pageVal: '1', zoom: 1 });
+    try {
+      const m = await lib();
+      if (this.doc) { this.doc.destroy(); this.doc = null; }
+      const doc = await m.getDocument(src).promise;
+      if (src !== this.props.src) return doc.destroy();
+      this.doc = doc;
+      this.sizes = [];
+      for (let i = 1; i <= doc.numPages; i++) { const p = await doc.getPage(i); const v = p.getViewport({ scale: 1 }); this.sizes.push([v.width, v.height]); }
+      this.setState({ n: doc.numPages });
+      await this.layout();
+      this.setState({ loading: false });
+    } catch (e) { this.setState({ loading: false, error: true }); }
+  }
+
+  async layout() {
+    const doc = this.doc, host = this.pagesRef.current, sc = this.scrollRef.current;
+    if (!doc || !host || !sc) return;
+    if (this.pio) this.pio.disconnect();
+    host.innerHTML = '';
+    const avail = Math.max(200, sc.clientWidth - 32);
+    this.pio = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) this.renderPage(e.target); }), { root: sc, rootMargin: '600px 0px' });
+    this.sizes.forEach(([w, h], i) => {
+      const s = (avail / w) * this.state.zoom;
+      const d = document.createElement('div');
+      d.dataset.page = i + 1; d.dataset.scale = s;
+      d.style.cssText = `flex:none;width:${Math.floor(w * s)}px;height:${Math.floor(h * s)}px;background:#fff;box-shadow:0 1px 6px rgba(0,0,0,.45)`;
+      host.appendChild(d);
+      this.pio.observe(d);
+    });
+  }
+
+  async renderPage(d) {
+    if (d.dataset.done) return;
+    d.dataset.done = '1';
+    try {
+      const p = await this.doc.getPage(+d.dataset.page);
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const vp = p.getViewport({ scale: +d.dataset.scale * dpr });
+      const c = document.createElement('canvas');
+      c.width = vp.width; c.height = vp.height;
+      c.style.cssText = 'width:100%;height:100%;display:block';
+      await p.render({ canvasContext: c.getContext('2d'), viewport: vp }).promise;
+      if (d.isConnected) d.appendChild(c);
+    } catch (e) {}
+  }
+
+  goTo(n) {
+    const host = this.pagesRef.current, sc = this.scrollRef.current;
+    n = Math.max(1, Math.min(this.state.n || 1, n | 0));
+    const el = host && host.children[n - 1];
+    if (el) sc.scrollTop = el.offsetTop - 14;
+    this.setState({ page: n, pageVal: String(n) });
+  }
+  setZoom(z) {
+    const sc = this.scrollRef.current, ratio = sc.scrollHeight ? sc.scrollTop / sc.scrollHeight : 0;
+    this.setState({ zoom: Math.max(0.5, Math.min(3, z)) }, async () => { await this.layout(); sc.scrollTop = ratio * sc.scrollHeight; });
+  }
+
+  renderVals() {
+    const s = this.state;
+    return {
+      rootRef: this.rootRef, scrollRef: this.scrollRef, pagesRef: this.pagesRef,
+      h: this.props.height ?? '520px', src: this.props.src ?? '',
+      n: s.n || '–', pageVal: s.pageVal, zoomPct: Math.round(s.zoom * 100) + '%',
+      loading: s.loading, error: s.error,
+      pagesCursor: this.props.href ? 'pointer' : 'default',
+      linkTitle: this.props.href ? 'Open document page' : '',
+      onPagesClick: () => { const h = this.props.href; if (h) { if (h[0] === '#') location.hash = h.slice(1); else location.href = h; } },
+      onPageInput: e => this.setState({ pageVal: e.target.value }),
+      onPageKey: e => { if (e.key === 'Enter') this.goTo(parseInt(s.pageVal, 10) || 1); },
+      zoomIn: () => this.setZoom(s.zoom + 0.25), zoomOut: () => this.setZoom(s.zoom - 0.25),
+      fullscreen: () => { const r = this.rootRef.current; if (document.fullscreenElement) document.exitFullscreen(); else if (r.requestFullscreen) r.requestFullscreen(); else if (r.webkitRequestFullscreen) r.webkitRequestFullscreen(); },
+      onScroll: e => {
+        const host = this.pagesRef.current; if (!host) return;
+        const y = e.currentTarget.scrollTop + e.currentTarget.clientHeight / 3;
+        let p = 1; for (const c of host.children) { if (c.offsetTop <= y) p = +c.dataset.page; else break; }
+        if (p !== s.page) this.setState({ page: p, pageVal: String(p) });
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>
