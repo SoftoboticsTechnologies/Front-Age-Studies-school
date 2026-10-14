@@ -295,28 +295,6 @@ img{display:block;max-width:100%}
     </div>
   </section>
 
-  <!-- Holiday List -->
-  <section style="background:#fff;padding:clamp(60px,8vw,100px) 20px">
-    <div style="max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:24px">
-      <h2 style="margin:0;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(30px,4vw,46px);color:#12306E">Holiday List</h2>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:28px">
-        <sc-for list="{{ holidayCards }}" as="h" hint-placeholder-count="2">
-          <div style="display:flex;flex-direction:column;gap:14px;background:#FFF9F0;border-radius:28px;padding:18px;box-shadow:0 20px 40px -30px rgba(18,48,110,.5)">
-            <div style="display:flex;align-items:center;gap:12px;padding:4px 6px">
-              <span style="width:42px;height:42px;border-radius:14px;background:{{ h.bg }};color:#fff;display:grid;place-items:center;font-size:18px;flex:none"><i class="bi bi-calendar-event" aria-hidden="true"></i></span>
-              <h3 style="margin:0;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(19px,2vw,22px);line-height:1.2;color:#12306E">{{ h.title }}</h3>
-            </div>
-            <dc-import name="PdfViewer" src="{{ h.src }}" height="min(75vh,680px)" hint-size="100%,680px"></dc-import>
-            <div style="display:flex;gap:10px;flex-wrap:wrap">
-              <a href="{{ h.src }}" download="" style="font-weight:800;font-size:14.5px;color:#fff;background:#1B4DB1;padding:9px 18px;border-radius:999px;display:inline-flex;gap:8px;align-items:center" style-hover="color:#fff"><i class="bi bi-download" aria-hidden="true"></i>Download PDF</a>
-              <a href="{{ h.src }}" target="_blank" rel="noopener" style="font-weight:800;font-size:14.5px;color:#1B4DB1;border:2px solid #1B4DB1;padding:7px 16px;border-radius:999px;display:inline-flex;gap:8px;align-items:center"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>Open in new tab</a>
-            </div>
-          </div>
-        </sc-for>
-      </div>
-    </div>
-  </section>
-
   <!-- Book Price List -->
   <section style="max-width:1200px;margin:0 auto;padding:clamp(60px,8vw,110px) 20px;display:flex;flex-direction:column;gap:26px">
     <div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:flex-end">
@@ -916,7 +894,7 @@ const STEPS = [
 const REQ = ['Completed admission form', 'Birth certificate (copy)', 'Emergency medical authorization', 'Previous academic records (if applicable)', 'Passport-size photographs of the student', 'Transfer certificate (for students coming from another school)'];
 const WHY_CHOOSE = ['A well-rounded curriculum focusing on academic excellence and holistic development.', 'Highly qualified and dedicated faculty.', 'State-of-the-art facilities and a safe learning environment.', 'A strong emphasis on values, leadership, and creativity.', 'Engaging extracurricular activities and sports programs.'];
 
-const DOC_ICON = { 'trust-paper': 'bank2', 'fire-safety': 'fire', 'recognition-letter': 'award-fill', 'safe-drinking-water': 'droplet-fill', 'water-sanitary-report': 'clipboard2-pulse-fill', 'building-safety-certificate': 'building-fill-check', 'total-buildup-area': 'rulers', 'certificate-of-land': 'geo-alt-fill', 'calendar-2026-27': 'calendar-event-fill', 'self-declaration': 'pen-fill', 'noc-front-age-studies': 'patch-check-fill', 'rent-agreement': 'house-door-fill' };
+const DOC_ICON = { 'trust-paper': 'bank2', 'fire-safety': 'fire', 'recognition-letter': 'award-fill', 'safe-drinking-water': 'droplet-fill', 'water-sanitary-report': 'clipboard2-pulse-fill', 'building-safety-certificate': 'building-fill-check', 'total-buildup-area': 'rulers', 'certificate-of-land': 'geo-alt-fill', 'calendar-2026-27': 'calendar-event-fill', 'holiday-ph-std-3': 'calendar2-heart-fill', 'holiday-std-4-10': 'calendar2-week-fill', 'self-declaration': 'pen-fill', 'noc-front-age-studies': 'patch-check-fill', 'rent-agreement': 'house-door-fill' };
 const DOC_COL = [['#E8EEFB', '#1B4DB1'], ['#FFF0DC', '#E07A10'], ['#E5F4E7', '#2E8B3E'], ['#FFF6D6', '#A87A00'], ['#FCE7F0', '#C23B78']];
 const NAV = [['home', 'Home'], ['about', 'About'], ['program', 'Program'], ['admission', 'Admission'], ['gallery', 'Gallery'], ['mandatory-disclosure', 'Mandatory Disclosure'], ['contact', 'Contact']];
 const TITLES = { about: 'About us', program: 'Our program', admission: 'Admission', contact: 'Contact', gallery: 'Gallery', 'mandatory-disclosure': 'Mandatory Disclosure' };
@@ -924,7 +902,7 @@ const TITLES = { about: 'About us', program: 'Our program', admission: 'Admissio
 const h = React.createElement;
 
 class Component extends DCLogic {
-  state = { page: 'home', doc: null, docs: [], holidays: [], q: '', book: 'All', act: 0, hol: 0, tst: 0, showAll: false, enroll: false, adm: false, menu: false, vw: typeof window !== 'undefined' ? window.innerWidth : 1280, waHover: false, tOk: {}, gi: 0, lb: -1, open: -1, toast: '', toastOk: true, sending: false, scroll: 0, loaded: false };
+  state = { page: 'home', doc: null, docs: [], q: '', book: 'All', act: 0, tst: 0, showAll: false, enroll: false, adm: false, menu: false, vw: typeof window !== 'undefined' ? window.innerWidth : 1280, waHover: false, tOk: {}, gi: 0, lb: -1, open: -1, toast: '', toastOk: true, sending: false, scroll: 0, loaded: false };
 
   componentDidMount() {
     this.readHash();
@@ -935,7 +913,7 @@ class Component extends DCLogic {
     window.addEventListener('scroll', this.onScroll, { passive: true });
     fetch('data/documents.json').then(r => r.json()).then(d => {
       const f = a => (a || []).filter(x => x.visible).sort((a, b) => a.order - b.order);
-      this.setState({ docs: f(d.mandatoryDisclosure), holidays: f(d.holidayLists) });
+      this.setState({ docs: f(d.mandatoryDisclosure) });
     }).catch(() => {});
     this.timer = setInterval(() => { if (!document.hidden) this.setState(s => ({ tst: (s.tst + 1) % TESTI.length })); }, 7000);
     this.keyH = e => { if (e.key === 'Escape' && this.state.menu) return this.setState({ menu: false }); if (e.key === 'Escape' && this.state.adm) return this.setState({ adm: false }); if (e.key === 'Escape' && this.state.enroll) return this.setState({ enroll: false }); if (this.state.lb < 0) return; if (e.key === 'Escape') this.setState({ lb: -1 }); if (e.key === 'ArrowRight') this.lbStep(1); if (e.key === 'ArrowLeft') this.lbStep(-1); };
@@ -989,7 +967,6 @@ class Component extends DCLogic {
     const prev = s.docs[(idx - 1 + s.docs.length) % s.docs.length], next = s.docs[(idx + 1) % s.docs.length];
     const q = s.q.trim().toLowerCase();
     const docsShown = s.docs.filter(d => !q || d.title.toLowerCase().includes(q)).map(d => ({ ...d, num: String(d.order).padStart(2, '0'), href: '#mandatory-disclosure/' + d.id, src: this.src(d) }));
-    const hol = s.holidays[s.hol];
     const T = TESTI[s.tst];
     const wa = (P.whatsappNumber || '8804045772').replace(/\D/g, '');
 
@@ -1062,9 +1039,6 @@ class Component extends DCLogic {
       actColor: ACT_COL[s.act], actIcon: 'bi bi-' + ACT_ICON[s.act], actHeadFg: s.act === 3 ? '#12306E' : '#fff',
       actDots: ACTS.map((_, i) => ({ w: s.act === i ? '26px' : '8px', bg: s.act === i ? ACT_COL[s.act] : '#D6E0F5' })),
       actPrev: () => this.setState(x => ({ act: (x.act + 3) % 4 })), actNext: () => this.setState(x => ({ act: (x.act + 1) % 4 })),
-      holidayTabs: s.holidays.map((x, i) => ({ title: x.title, sel: s.hol === i, bg: s.hol === i ? '#1B4DB1' : '#fff', fg: s.hol === i ? '#fff' : '#1B4DB1', pick: () => this.setState({ hol: i }) })),
-      holidayCards: s.holidays.map((x, i) => ({ title: x.title, src: this.src(x), bg: i ? '#F58A1F' : '#1B4DB1' })),
-      holidaySrc: this.src(hol), holidayTitle: hol ? hol.title : 'Holiday List',
       bookTabs: ['All', ...BOOKS.map(b => b[0])].map(l => ({ label: l, sel: s.book === l, bg: s.book === l ? '#12306E' : '#fff', fg: s.book === l ? '#FFC93C' : '#12306E', pick: () => this.setState({ book: l }) })),
       booksShown: BOOKS.map((b, i) => ({ cls: b[0], price: b[1], items: b[2], color: BOOK_COL[i] })).filter(b => s.book === 'All' || b.cls === s.book),
       exploreBooks: () => this.setState({ book: 'All' }),
