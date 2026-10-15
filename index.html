@@ -6,7 +6,11 @@
 <title>FRONT – AGE STUDIES</title>
 <meta name="description" content="Welcome to Frontage Studies, where every child's potential is nurtured and celebrated.">
 <meta name="theme-color" content="#12306E">
-<link rel="icon" href="assets/images/favicon-64.png">
+<link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg">
+<link rel="icon" type="image/png" sizes="96x96" href="assets/favicon/favicon-96x96.png">
+<link rel="shortcut icon" href="assets/favicon/favicon.ico">
+<link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png">
+<link rel="manifest" href="assets/favicon/site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap">
@@ -51,7 +55,7 @@
 <header class="site-header">
   <div class="wrap">
     <a class="brand" href="#home" aria-label="FRONT - AGE STUDIES home">
-      <img src="assets/images/logo-160.png" srcSet="assets/images/logo-160.png 1x, assets/images/logo-320.png 2x" width="71" height="58" alt="FRONT - AGE STUDIES logo"/>
+      <img src="assets/logo/Front-Age Academy LOGO(bg removed).png" alt="FRONT - AGE STUDIES logo"/>
       <span class="brand-text"><span class="brand-name">FRONT – AGE STUDIES</span><span class="brand-sub">Knowledge is our weapon</span></span>
     </a>
     <nav class="nav" aria-label="Main">
@@ -69,7 +73,7 @@
   <div class="drawer-bg" onClick="{{ closeMenuBg }}">
     <aside class="drawer" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu">
       <div class="drawer-head">
-        <img src="assets/images/logo-160.png" width="61" height="50" alt="FRONT - AGE STUDIES logo"/>
+        <img src="assets/logo/Front-Age Academy LOGO(bg removed).png" alt="FRONT - AGE STUDIES logo"/>
         <button type="button" class="icon-btn" data-focus="menu" onClick="{{ closeMenu }}" aria-label="Close menu"><i class="bi bi-x-lg" aria-hidden="true"></i></button>
       </div>
       <nav aria-label="Mobile">
@@ -111,7 +115,7 @@
       </div>
       <div>
         <sc-if value="{{ hasHeroPhotos }}"><div class="{{ heroGridCls }}">{{ heroImgs }}</div></sc-if>
-        <sc-if value="{{ noHeroPhotos }}"><div class="hero-crest"><img src="assets/images/logo-320.png" width="320" height="261" alt="FRONT - AGE STUDIES logo" fetchPriority="high"/><p>“KNOWLEDGE IS OUR WEAPON”</p></div></sc-if>
+        <sc-if value="{{ noHeroPhotos }}"><div class="hero-crest"><img src="assets/logo/Front-Age Academy LOGO(bg removed).png" alt="FRONT - AGE STUDIES logo" fetchPriority="high"/><p>“KNOWLEDGE IS OUR WEAPON”</p></div></sc-if>
       </div>
     </div>
   </section>
@@ -148,6 +152,32 @@
       </article>
     </div>
   </section>
+
+  <!-- Gallery (shown only when photographs are available) -->
+  <sc-if value="{{ hasGallery }}">
+    <section class="sec" aria-labelledby="gallery-title">
+      <div class="wrap">
+        <div class="sec-head">
+          <h2 class="h-sec" id="gallery-title">Gallery</h2>
+          <button type="button" class="btn btn-outline btn-sm" onClick="{{ toggleAll }}">{{ allLabel }}</button>
+        </div>
+        <sc-if value="{{ notShowAll }}">
+          <div class="slider" aria-roledescription="carousel" aria-label="Gallery">
+            <sc-for list="{{ gallery }}" as="g">
+              <button type="button" class="slide" onClick="{{ g.open }}" aria-label="Open photo {{ g.n }}" aria-hidden="{{ g.hidden }}" tabIndex="{{ g.tab }}" style="opacity:{{ g.op }};pointer-events:{{ g.pe }}">{{ g.cover }}</button>
+            </sc-for>
+            <button type="button" class="slider-btn" style="left:12px" onClick="{{ gPrev }}" aria-label="Previous photo"><i class="bi bi-chevron-left" aria-hidden="true"></i></button>
+            <button type="button" class="slider-btn" style="right:12px" onClick="{{ gNext }}" aria-label="Next photo"><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+          </div>
+        </sc-if>
+        <sc-if value="{{ showAll }}">
+          <div class="masonry">
+            <sc-for list="{{ gallery }}" as="g"><button type="button" onClick="{{ g.open }}" aria-label="Open photo {{ g.n }}">{{ g.el }}</button></sc-for>
+          </div>
+        </sc-if>
+      </div>
+    </section>
+  </sc-if>
 
   <!-- Programs -->
   <section class="sec sec-cream" aria-labelledby="programs-title">
@@ -209,32 +239,6 @@
       </ul>
     </div>
   </section>
-
-  <!-- Gallery (shown only when photographs are available) -->
-  <sc-if value="{{ hasGallery }}">
-    <section class="sec" aria-labelledby="gallery-title">
-      <div class="wrap">
-        <div class="sec-head">
-          <h2 class="h-sec" id="gallery-title">Gallery</h2>
-          <button type="button" class="btn btn-outline btn-sm" onClick="{{ toggleAll }}">{{ allLabel }}</button>
-        </div>
-        <sc-if value="{{ notShowAll }}">
-          <div class="slider" aria-roledescription="carousel" aria-label="Gallery">
-            <sc-for list="{{ gallery }}" as="g">
-              <button type="button" class="slide" onClick="{{ g.open }}" aria-label="Open photo {{ g.n }}" aria-hidden="{{ g.hidden }}" tabIndex="{{ g.tab }}" style="opacity:{{ g.op }};pointer-events:{{ g.pe }}">{{ g.cover }}</button>
-            </sc-for>
-            <button type="button" class="slider-btn" style="left:12px" onClick="{{ gPrev }}" aria-label="Previous photo"><i class="bi bi-chevron-left" aria-hidden="true"></i></button>
-            <button type="button" class="slider-btn" style="right:12px" onClick="{{ gNext }}" aria-label="Next photo"><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
-          </div>
-        </sc-if>
-        <sc-if value="{{ showAll }}">
-          <div class="masonry">
-            <sc-for list="{{ gallery }}" as="g"><button type="button" onClick="{{ g.open }}" aria-label="Open photo {{ g.n }}">{{ g.el }}</button></sc-for>
-          </div>
-        </sc-if>
-      </div>
-    </section>
-  </sc-if>
 
   <!-- Book price list -->
   <section class="sec" aria-labelledby="books-title">
@@ -347,7 +351,7 @@
         <sc-if value="{{ aboutPhoto }}"><div class="crest-photo">{{ aboutImg }}</div></sc-if>
         <div class="glance">
           <div class="glance-top">
-            <img src="assets/images/logo-160.png" srcSet="assets/images/logo-160.png 1x, assets/images/logo-320.png 2x" width="92" height="75" alt=""/>
+            <img src="assets/logo/Front-Age Academy LOGO(bg removed).png" alt=""/>
             <div><div class="glance-name">FRONT – AGE STUDIES</div><div class="glance-motto">“KNOWLEDGE IS OUR WEAPON”</div></div>
           </div>
           <dl>
@@ -436,7 +440,7 @@
         <sc-if value="{{ noAdmPhotos }}">
           <div class="glance">
             <div class="glance-top">
-              <img src="assets/images/logo-160.png" width="92" height="75" alt=""/>
+              <img src="assets/logo/Front-Age Academy LOGO(bg removed).png" alt=""/>
               <div><div class="glance-name">FRONT – AGE STUDIES</div><div class="glance-motto">ADMISSION OPEN</div></div>
             </div>
             <dl>
@@ -687,7 +691,7 @@
 <footer class="site-footer">
   <div class="wrap foot-grid">
     <div class="stack">
-      <img class="foot-logo" src="assets/images/logo-160.png" srcSet="assets/images/logo-160.png 1x, assets/images/logo-320.png 2x" width="132" height="107" alt="FRONT - AGE STUDIES logo" loading="lazy"/>
+      <img class="foot-logo" src="assets/logo/Front-Age Academy LOGO.png" alt="FRONT - AGE STUDIES logo" loading="lazy"/>
       <p>Welcome to <strong>Frontage Studies,</strong> where every child's potential is nurtured and celebrated.</p>
       <div class="soc">
         <a href="https://www.facebook.com/Front-Age-Studies-102368091861850" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><i class="bi bi-facebook" aria-hidden="true"></i></a>
@@ -745,7 +749,7 @@
     <div class="adm" role="dialog" aria-modal="true" aria-labelledby="adm-title">
       <button type="button" class="icon-btn" data-focus="adm" onClick="{{ closeAdm }}" aria-label="Close"><i class="bi bi-x-lg" aria-hidden="true"></i></button>
       <div class="adm-top">
-        <img src="assets/images/logo-320.png" width="132" height="107" alt="FRONT - AGE STUDIES"/>
+        <img src="assets/logo/Front-Age Academy LOGO(bg removed).png" alt="FRONT - AGE STUDIES"/>
         <span class="tag" id="adm-title">ADMISSION OPEN</span>
       </div>
       <div class="adm-body">
@@ -765,7 +769,7 @@
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="enroll-title">
       <form class="form" onSubmit="{{ submit }}">
         <div class="form-head">
-          <img src="assets/images/logo-160.png" width="58" height="47" alt=""/>
+          <img src="assets/logo/Front-Age Academy LOGO(bg removed).png" alt=""/>
           <div><h2 id="enroll-title">Enroll now</h2></div>
           <button type="button" class="icon-btn" onClick="{{ closeEnroll }}" aria-label="Close"><i class="bi bi-x-lg" aria-hidden="true"></i></button>
         </div>
@@ -837,7 +841,7 @@
 // broken image.
 // ---------------------------------------------------------------------------
 const PHOTOS = {
-  hero: ['', '', ''],       // up to 3 hero photographs (first is the large one)
+  hero: ['assets/images/Media (1).png', 'assets/images/Media (7).jpeg', 'assets/images/Media (8).jpeg'],       // up to 3 hero photographs (first is the large one)
   principal: '',            // Anuranjana Kumari
   about: '',
   admission: ['', ''],
@@ -845,7 +849,7 @@ const PHOTOS = {
   team: ['', '', ''],       // Founder, Manager, Director
   testimonials: ['', '', '', '', '', '']
 };
-const GALLERY = [];         // e.g. ['assets/photos/gallery/01.jpg', ...]
+const GALLERY = Array.from({ length: 11 }, (_, i) => 'assets/images/Media (' + (i + 1) + ').' + (i ? 'jpeg' : 'png'));
 
 // Classes offered: LKG to Class 5 only. Used to validate every enquiry form.
 const ALLOWED_CLASSES = ['LKG', 'UKG', 'Class 1', 'Class 2', 'Class 3', 'Class 4', 'Class 5'];
@@ -949,7 +953,7 @@ class Component extends DCLogic {
     window.addEventListener('keydown', this.keyH);
     let seen = false; try { seen = sessionStorage.getItem('fas-adm-popup') === '1'; } catch (e) {}
     if (!seen && (this.props.admissionPopup ?? true)) this.admT = setTimeout(() => { if (!this.state.enroll && !this.state.menu) this.setState({ adm: true }); try { sessionStorage.setItem('fas-adm-popup', '1'); } catch (e) {} }, 5000);
-    if (GALLERY.length > 1) this.gTimer = setInterval(() => { if (!document.hidden && this.state.lb < 0 && (this.props.motion ?? true)) this.setState(s => ({ gi: (s.gi + 1) % GALLERY.length })); }, 4000);
+    if (GALLERY.length > 1) this.gTimer = setInterval(() => { if (!document.hidden && this.state.lb < 0 && (this.props.motion ?? true)) this.setState(s => ({ gi: (s.gi + 1) % GALLERY.length })); }, 3000);
   }
   componentWillUnmount() { window.removeEventListener('hashchange', this.readHash); window.removeEventListener('scroll', this.onScroll); window.removeEventListener('keydown', this.keyH); clearInterval(this.gTimer); clearTimeout(this.admT); clearTimeout(this.tt); }
   componentDidUpdate() {
