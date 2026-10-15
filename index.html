@@ -15,7 +15,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-<link rel="stylesheet" href="assets/css/site.css?v=20261014">
+<link rel="stylesheet" href="assets/css/site.css?v=20261015b">
+<script src="assets/js/motion.js?v=20261015b"></script>
 <script src="./support.js"></script>
 </head>
 <body>
@@ -121,7 +122,7 @@
   </section>
 
   <!-- About us -->
-  <section class="sec" aria-labelledby="about-title">
+  <section class="sec" style="padding-bottom:clamp(32px,4vw,48px)" aria-labelledby="about-title">
     <div class="wrap">
       <div class="split">
         <div class="stack">
@@ -138,14 +139,16 @@
         <div class="leader-photo">
           <sc-if value="{{ leaderPhoto }}">{{ leaderImg }}</sc-if>
           <sc-if value="{{ noLeaderPhoto }}"><span class="mono" aria-hidden="true">AK</span></sc-if>
+          <span class="leader-exp"><strong data-count="20">20+</strong> years in education</span>
         </div>
         <div class="leader-body">
+          <span class="eyebrow">A message to parents</span>
           <h3 id="leader-name">Anuranjana Kumari</h3>
           <ul class="creds">
-            <li>Graduation in Zoology</li>
-            <li>Post graduation in Zoology</li>
-            <li>B. Ed</li>
-            <li>20 year experience School academic and Management</li>
+            <li><i class="bi bi-mortarboard-fill" aria-hidden="true"></i>Graduation in Zoology</li>
+            <li><i class="bi bi-mortarboard-fill" aria-hidden="true"></i>Post graduation in Zoology</li>
+            <li><i class="bi bi-patch-check-fill" aria-hidden="true"></i>B. Ed</li>
+            <li><i class="bi bi-award-fill" aria-hidden="true"></i>20 year experience School academic and Management</li>
           </ul>
           <blockquote class="quote">At FRONT-AGE STUDIES, we have always believed that both teacher and parents play an important role in the growth and development of a child and it is only through open communications, fruitful discussions and active participation that we can together lay a strong foundation for our children. The FRONT-AGE STUDIES Diary is one of the ways we use to bridge the communication gap between the school and the parents. Not only will this diary act as a handbook for parents, giving you instant answers for most of your questions, it will also establish a valuable liaison between teacher and parents with regard to the quality and quantity of work being attempted by the child in the school and at home. You will also find various forms for different purposes at the back of the diary, which would help parents and the school to actively interact with each other.</blockquote>
         </div>
@@ -155,7 +158,7 @@
 
   <!-- Gallery (shown only when photographs are available) -->
   <sc-if value="{{ hasGallery }}">
-    <section class="sec" aria-labelledby="gallery-title">
+    <section class="sec" style="padding-top:0" aria-labelledby="gallery-title">
       <div class="wrap">
         <div class="sec-head">
           <h2 class="h-sec" id="gallery-title">Gallery</h2>
@@ -182,13 +185,18 @@
   <!-- Programs -->
   <section class="sec sec-cream" aria-labelledby="programs-title">
     <div class="wrap">
-      <div class="sec-head"><div class="stack"><span class="eyebrow">Our program</span><h2 class="h-sec" id="programs-title">Age-specific support for every stage</h2></div></div>
-      <div class="stages">
+      <div class="act-head">
+        <span class="eyebrow">Our program</span>
+        <h2 class="h-sec" id="programs-title">Age-specific support for every stage</h2>
+      </div>
+      <div class="prog-cards">
         <sc-for list="{{ programs }}" as="p">
-          <article class="stage">
-            <span class="stage-num" aria-hidden="true">{{ p.num }}</span>
-            <div>
-              <sc-if value="{{ p.img }}"><div class="stage-photo">{{ p.el }}</div></sc-if>
+          <article class="prog-card">
+            <div class="prog-media">
+              <sc-if value="{{ p.img }}">{{ p.el }}</sc-if>
+              <span class="prog-num" aria-hidden="true">{{ p.num }}</span>
+            </div>
+            <div class="prog-body">
               <h3>{{ p.title }}</h3>
               <p>{{ p.text }}</p>
               <a class="link-arrow" href="#program">Learn more <span aria-hidden="true">→</span></a>
@@ -197,8 +205,9 @@
         </sc-for>
       </div>
       <div class="stage-note">
+        <span class="stage-note-ic"><i class="bi bi-calendar-heart" aria-hidden="true"></i></span>
         <p>We welcome kids into our 2-4's program based on their birth year.</p>
-        <a class="btn btn-primary" href="#contact" onClick="{{ openEnroll }}">Enroll your kid →</a>
+        <a class="btn btn-gold" href="#contact" onClick="{{ openEnroll }}">Enroll your kid →</a>
       </div>
     </div>
   </section>
@@ -227,16 +236,21 @@
   <!-- Daily activities -->
   <section class="sec sec-cream" aria-labelledby="acts-title">
     <div class="wrap">
-      <div class="sec-head"><div class="stack"><span class="eyebrow">Daily activities</span><h2 class="h-sec" id="acts-title">Designed to help children realize their potential</h2></div></div>
-      <ul class="act-grid">
+      <div class="act-head">
+        <span class="eyebrow">Daily activities</span>
+        <h2 class="h-sec" id="acts-title">Designed to help children realize their potential</h2>
+        <p>A balanced day that moves from coming together, to play, to discovery, to the open air.</p>
+      </div>
+      <ol class="act-flow">
         <sc-for list="{{ activities }}" as="a">
-          <li class="act-card">
-            <div class="act-card-head"><i class="{{ a.icon }}" aria-hidden="true"></i><span class="eyebrow">{{ a.num }}</span></div>
-            <h3>{{ a.title }}</h3>
-            <p>{{ a.text }}</p>
+          <li class="{{ a.cls }}">
+            <div class="act-card">
+              <div class="act-title"><span class="act-ic"><i class="{{ a.icon }}" aria-hidden="true"></i></span><h3>{{ a.title }}</h3></div>
+              <p>{{ a.text }}</p>
+            </div>
           </li>
         </sc-for>
-      </ul>
+      </ol>
     </div>
   </section>
 
@@ -329,6 +343,8 @@
         </ol>
       </nav>
       <h1>{{ bannerTitle }}</h1>
+      <sc-if value="{{ bannerSub }}"><p class="page-sub">{{ bannerSub }}</p></sc-if>
+      <span class="page-head-logo" aria-hidden="true"><img src="assets/logo/Front-Age Academy LOGO(bg removed).png" alt=""/></span>
     </div>
   </section>
 </sc-if>
@@ -336,51 +352,77 @@
 <!-- ================= ABOUT ================= -->
 <sc-if value="{{ isAbout }}">
   <section class="sec">
-    <div class="wrap history">
-      <div class="stack">
-        <span class="eyebrow">About us</span>
+    <div class="wrap about-story">
+      <div class="about-media">
+        <sc-if value="{{ aboutPhoto }}"><div class="about-photo">{{ aboutImg }}</div></sc-if>
+        <sc-if value="{{ noAboutPhoto }}"><div class="about-photo about-photo-logo"><img src="assets/logo/Front-Age Academy LOGO(bg removed).png" alt=""/></div></sc-if>
+        <div class="about-badge">
+          <img src="assets/logo/Front-Age Academy LOGO(bg removed).png" alt=""/>
+          <div><b>Since 1998</b><span>“KNOWLEDGE IS OUR WEAPON”</span></div>
+        </div>
+      </div>
+      <div class="stack about-text">
+        <span class="eyebrow">Our story</span>
         <h2 class="h-sec">We are here to help parents raise happy and healthy children</h2>
         <div class="prose"><p>25 years ago, in 1998, a fairly young couple saw a dream together. A dream to shape the young minds in a way that they grow into becoming independent, empowered individuals with compassion towards others and aspirations to make a mark in the world. The dream manifested in the form of FRONT – AGE STUDIES, a temple of learning with the motto “KNOWLEDGE IS OUR WEAPON”. What started in a one room setting has now grown into an enormous citadel of learning with a junior and a now a senior branch. Set in a pristine, lush green environment, the students here are provided a world class learning environment and are nurtured with the time tested values and ethos of life.</p></div>
-        <div class="timeline">
-          <div><b>1998</b><span>one room</span></div>
-          <hr/>
-          <div><b>today</b><span>junior and senior branch</span></div>
+        <div class="about-actions">
+          <a class="btn btn-primary" href="#contact" onClick="{{ openEnroll }}">Enroll your kid →</a>
+          <a class="btn btn-outline" href="#contact"><i class="bi bi-telephone-fill" aria-hidden="true"></i>Contact us</a>
         </div>
-      </div>
-      <aside class="stack about-aside">
-        <sc-if value="{{ aboutPhoto }}"><div class="crest-photo">{{ aboutImg }}</div></sc-if>
-        <div class="glance">
-          <div class="glance-top">
-            <img src="assets/logo/Front-Age Academy LOGO(bg removed).png" alt=""/>
-            <div><div class="glance-name">FRONT – AGE STUDIES</div><div class="glance-motto">“KNOWLEDGE IS OUR WEAPON”</div></div>
-          </div>
-          <dl>
-            <div class="glance-row"><dt>Admission</dt><dd>{{ banner }}</dd></div>
-            <div class="glance-row"><dt>Classes</dt><dd>LKG to Class 5</dd></div>
-            <!-- School timings hidden: <div class="glance-row"><dt>School hours</dt><dd>Summer Time :- 07:00am to 02:00pm<br/>Winter time :- 08:00am to 03:00pm.</dd></div> -->
-            <div class="glance-row"><dt>Call</dt><dd class="phone-list"><a href="tel:8804045772">☎ 8804045772</a><a href="tel:8271788118">☎ 8271788118</a><a href="tel:8380465933">☎ 8380465933</a></dd></div>
-          </dl>
-        </div>
-      </aside>
-    </div>
-  </section>
-
-  <section class="sec" style="padding-top:0" aria-labelledby="about-particulars">
-    <div class="wrap">
-      <div class="md-sec-head"><div><h2 id="about-particulars">School particulars</h2></div></div>
-      <div class="table-card">
-        <table class="kv"><tbody><tr><th scope="row">Name of the School</th><td>FRONT – AGE STUDIES</td></tr><tr><th scope="row">Address</th><td>Punaura Dham, Near Baba Pokhar, Punaura Sitamarhi – 843302 (Bihar)</td></tr><tr><th scope="row">City Office</th><td>Hospital Road, Professor's Colony, KVJ Nagar, Sitamarhi, Bihar 843302</td></tr><tr><th scope="row">Classes</th><td>LKG to Class 5</td></tr><tr><th scope="row">Phone</th><td><a href="tel:8804045772">8804045772</a>, <a href="tel:8271788118">8271788118</a>, <a href="tel:8380465933">8380465933</a></td></tr><tr><th scope="row">Email</th><td><a href="mailto:frontagestudies123@gmail.com">frontagestudies123@gmail.com</a></td></tr><!-- School timings hidden: <tr><th scope="row">School Timings</th><td>Summer Time :- 07:00am to 02:00pm<br/>Winter time :- 08:00am to 03:00pm.</td></tr> --></tbody></table>
       </div>
     </div>
   </section>
 
-  <section class="sec sec-cream">
+  <section class="stats-band" aria-label="FRONT - AGE STUDIES in numbers">
     <div class="wrap">
-      <div class="sec-head">
-        <div class="stack"><span class="eyebrow">Meet the MANAGEMENT</span><h2 class="h-sec">Experts in giving your children best start</h2></div>
-        <div class="values" aria-label="Our values"><span>Inclusive</span><span>Responsible</span><span>Respectful</span><span>Collaborative</span></div>
+      <ul class="stats">
+        <li><i class="bi bi-flag-fill" aria-hidden="true"></i><b data-count="1998">1998</b><span>Founded in Sitamarhi</span></li>
+        <li><i class="bi bi-hourglass-split" aria-hidden="true"></i><b data-count="25">25+</b><span>Years of nurturing learners</span></li>
+        <li><i class="bi bi-buildings-fill" aria-hidden="true"></i><b data-count="2">2</b><span>Branches, junior and senior</span></li>
+        <li><i class="bi bi-mortarboard-fill" aria-hidden="true"></i><b>LKG – 5</b><span>Classes offered</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec sec-cream" aria-labelledby="values-title">
+    <div class="wrap">
+      <div class="act-head">
+        <span class="eyebrow">Our values</span>
+        <h2 class="h-sec" id="values-title">What we stand for</h2>
       </div>
-      <h3 style="font-size:26px;margin-bottom:22px">Meet Our Team</h3>
+      <ul class="value-grid">
+        <li><span class="value-ic"><i class="bi bi-people-fill" aria-hidden="true"></i></span><h3>Inclusive</h3><p>Every child is welcomed, seen and given room to grow.</p></li>
+        <li><span class="value-ic"><i class="bi bi-shield-check" aria-hidden="true"></i></span><h3>Responsible</h3><p>Children learn to take ownership of their work and their actions.</p></li>
+        <li><span class="value-ic"><i class="bi bi-heart-fill" aria-hidden="true"></i></span><h3>Respectful</h3><p>Kindness towards teachers, classmates, family and community.</p></li>
+        <li><span class="value-ic"><i class="bi bi-puzzle-fill" aria-hidden="true"></i></span><h3>Collaborative</h3><p>Parents, teachers and children working together as one team.</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="about-particulars">
+    <div class="wrap">
+      <div class="act-head">
+        <span class="eyebrow">School particulars</span>
+        <h2 class="h-sec" id="about-particulars">Everything in one place</h2>
+      </div>
+      <ul class="facts">
+        <li><i class="bi bi-bank2" aria-hidden="true"></i><div><span>Name of the School</span><b>FRONT – AGE STUDIES</b></div></li>
+        <li><i class="bi bi-mortarboard-fill" aria-hidden="true"></i><div><span>Classes</span><b>LKG to Class 5</b></div></li>
+        <li><i class="bi bi-envelope-fill" aria-hidden="true"></i><div><span>Email</span><b><a href="mailto:frontagestudies123@gmail.com">frontagestudies123@gmail.com</a></b></div></li>
+        <li><i class="bi bi-geo-alt-fill" aria-hidden="true"></i><div><span>Address</span><b>Punaura Dham, Near Baba Pokhar, Punaura Sitamarhi – 843302 (Bihar)</b></div></li>
+        <li><i class="bi bi-building" aria-hidden="true"></i><div><span>City Office</span><b>Hospital Road, Professor's Colony, KVJ Nagar, Sitamarhi, Bihar 843302</b></div></li>
+        <li><i class="bi bi-telephone-fill" aria-hidden="true"></i><div><span>Phone</span><b><a href="tel:8804045772">8804045772</a>, <a href="tel:8271788118">8271788118</a>, <a href="tel:8380465933">8380465933</a></b></div></li>
+        <!-- School timings hidden: <li><i class="bi bi-clock-fill" aria-hidden="true"></i><div><span>School Timings</span><b>Summer Time :- 07:00am to 02:00pm<br/>Winter time :- 08:00am to 03:00pm.</b></div></li> -->
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec sec-cream" aria-labelledby="team-title">
+    <div class="wrap">
+      <div class="act-head">
+        <span class="eyebrow">Meet the management</span>
+        <h2 class="h-sec" id="team-title">Experts in giving your children the best start</h2>
+      </div>
       <div class="team">
         <sc-for list="{{ team }}" as="m">
           <article class="profile">
@@ -389,7 +431,7 @@
               <sc-if value="{{ m.noImg }}"><span class="mono" aria-hidden="true">{{ m.initials }}</span></sc-if>
             </div>
             <div class="profile-body">
-              <div><h4 style="font-size:20px;color:var(--navy-d)">{{ m.name }}</h4><span class="role">{{ m.role }}</span></div>
+              <div><h3>{{ m.name }}</h3><span class="role">{{ m.role }}</span></div>
               <sc-if value="{{ m.open }}"><div class="profile-msg" id="{{ m.msgId }}"><sc-for list="{{ m.msg }}" as="para"><p>{{ para }}</p></sc-for></div></sc-if>
               <button type="button" class="text-btn" onClick="{{ m.toggle }}" aria-expanded="{{ m.open }}">{{ m.btn }} <i class="{{ m.icon }}" aria-hidden="true"></i></button>
             </div>
@@ -398,27 +440,48 @@
       </div>
     </div>
   </section>
+
+  <section class="cta-band" aria-label="Enrolment">
+    <div class="wrap">
+      <h2>Give your child the best start</h2>
+      <a class="btn btn-gold" href="#contact" onClick="{{ openEnroll }}">Enroll your kid →</a>
+    </div>
+  </section>
 </sc-if>
 
 <!-- ================= PROGRAM ================= -->
 <sc-if value="{{ isProgram }}">
   <section class="sec">
     <div class="wrap">
-      <p class="intro">Frontage Studies offers a comprehensive educational program designed to nurture and develop each child's potential. Our curriculum is structured across two key stages:</p>
-      <div style="margin-top:clamp(32px,5vw,56px)">
+      <div class="act-head">
+        <span class="eyebrow">How we teach</span>
+        <h2 class="h-sec">Two stages, one caring journey</h2>
+        <p>Frontage Studies offers a comprehensive educational program designed to nurture and develop each child's potential. Our curriculum is structured across two key stages:</p>
+      </div>
+      <div class="pp-list">
         <sc-for list="{{ programPage }}" as="p">
           <article class="{{ p.cls }}">
-            <span class="prog-num" aria-hidden="true">{{ p.num }}</span>
-            <div>
+            <sc-if value="{{ p.img }}"><div class="pp-photo">{{ p.el }}<span class="pp-num" aria-hidden="true">{{ p.num }}</span></div></sc-if>
+            <div class="pp-body">
+              <span class="eyebrow">Stage {{ p.num }}</span>
               <h2>{{ p.title }}</h2>
               <p>{{ p.text }}</p>
               <a class="btn btn-primary" href="#contact" onClick="{{ openEnroll }}">Enroll your kid →</a>
             </div>
-            <sc-if value="{{ p.img }}"><div class="prog-photo">{{ p.el }}</div></sc-if>
           </article>
         </sc-for>
       </div>
-      <p class="closing">At Frontage Studies, we believe in a holistic approach to education, ensuring that each child receives the support and resources needed to thrive.</p>
+      <div class="pp-closing">
+        <i class="bi bi-quote" aria-hidden="true"></i>
+        <p>At Frontage Studies, we believe in a holistic approach to education, ensuring that each child receives the support and resources needed to thrive.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band" aria-label="Enrolment">
+    <div class="wrap">
+      <h2>Find the right stage for your child</h2>
+      <a class="btn btn-gold" href="#contact" onClick="{{ openEnroll }}">Enroll your kid →</a>
     </div>
   </section>
 </sc-if>
@@ -426,14 +489,17 @@
 <!-- ================= ADMISSION ================= -->
 <sc-if value="{{ isAdmission }}">
   <section class="sec">
-    <div class="wrap split" style="align-items:center">
+    <div class="wrap adm-intro">
       <div class="stack">
-        <span class="eyebrow">Admission</span>
+        <span class="eyebrow">Admission open</span>
         <h2 class="h-sec">Ready to enroll? We hope to meet you soon</h2>
         <p class="lead">Welcome to Front Age Studies, where we are committed to providing a nurturing and enriching learning environment for our students. We are delighted that you are considering joining our community, and we look forward to guiding you through the admission process.</p>
-        <a class="call-card" href="tel:8804045772"><i class="bi bi-telephone-fill" aria-hidden="true"></i><span><small>Call</small><b>8804045772</b></span></a>
+        <div class="intro-actions">
+          <a class="btn btn-primary" href="#contact" onClick="{{ openEnroll }}">Enroll your kid →</a>
+          <a class="call-card" href="tel:8804045772"><i class="bi bi-telephone-fill" aria-hidden="true"></i><span><small>Call</small><b>8804045772</b></span></a>
+        </div>
       </div>
-      <div class="stack">
+      <div>
         <sc-if value="{{ hasAdmPhotos }}">
           <div class="adm-photos"><sc-for list="{{ admPhotos }}" as="ph"><div>{{ ph.el }}</div></sc-for></div>
         </sc-if>
@@ -447,18 +513,20 @@
               <div class="glance-row"><dt>Admission</dt><dd>{{ banner }}</dd></div>
               <div class="glance-row"><dt>Classes</dt><dd>LKG to Class 5</dd></div>
             </dl>
-            <div style="padding:18px 22px;border-top:1px solid var(--line);background:var(--cream)"><a class="btn btn-primary" href="#contact" onClick="{{ openEnroll }}">Enroll your kid →</a></div>
           </div>
         </sc-if>
       </div>
     </div>
   </section>
 
-  <section class="sec sec-cream">
+  <section class="sec sec-cream" aria-labelledby="process-title">
     <div class="wrap">
-      <div class="sec-head"><h2 class="h-sec">The process</h2></div>
+      <div class="act-head">
+        <span class="eyebrow">Step by step</span>
+        <h2 class="h-sec" id="process-title">The admission process</h2>
+      </div>
       <ol class="steps">
-        <sc-for list="{{ steps }}" as="s"><li><h3>{{ s.title }}</h3><p>{{ s.text }}</p></li></sc-for>
+        <sc-for list="{{ steps }}" as="s"><li><span class="step-ic"><i class="{{ s.icon }}" aria-hidden="true"></i></span><h3>{{ s.title }}</h3><p>{{ s.text }}</p></li></sc-for>
       </ol>
     </div>
   </section>
@@ -466,24 +534,29 @@
   <section class="sec">
     <div class="wrap adm-cols">
       <div class="panel panel-navy">
-        <h2>Required Documents</h2>
+        <div class="panel-head"><span class="panel-ic"><i class="bi bi-folder2-open" aria-hidden="true"></i></span><h2>Required Documents</h2></div>
         <ul class="checks">
-          <sc-for list="{{ requiredDocs }}" as="d"><li><i class="bi bi-check2-square" aria-hidden="true"></i><span>{{ d }}</span></li></sc-for>
+          <sc-for list="{{ requiredDocs }}" as="d"><li><i class="bi bi-check2-circle" aria-hidden="true"></i><span>{{ d }}</span></li></sc-for>
         </ul>
-        <a class="btn btn-gold" href="#contact" onClick="{{ openEnroll }}" style="align-self:flex-start;margin-top:6px">Enroll your kid →</a>
       </div>
-      <div class="stack" style="gap:24px">
-        <div class="panel">
-          <h2>Why Choose us</h2>
-          <ul class="bullets">
-            <sc-for list="{{ whyChoose }}" as="w"><li>{{ w }}</li></sc-for>
-          </ul>
-        </div>
-        <div class="panel panel-cream">
-          <h2>Fees &amp; Financial Aid</h2>
-          <p>Our fee structure is designed to ensure quality education at an affordable cost. For details on tuition fees, scholarships, and financial aid options, please visit our Fees section or contact the admissions office.</p>
-        </div>
+      <div class="panel">
+        <div class="panel-head"><span class="panel-ic"><i class="bi bi-stars" aria-hidden="true"></i></span><h2>Why Choose us</h2></div>
+        <ul class="bullets">
+          <sc-for list="{{ whyChoose }}" as="w"><li>{{ w }}</li></sc-for>
+        </ul>
       </div>
+      <div class="panel panel-cream">
+        <div class="panel-head"><span class="panel-ic"><i class="bi bi-wallet2" aria-hidden="true"></i></span><h2>Fees &amp; Financial Aid</h2></div>
+        <p>Our fee structure is designed to ensure quality education at an affordable cost. For details on tuition fees, scholarships, and financial aid options, please visit our Fees section or contact the admissions office.</p>
+        <a class="btn btn-outline btn-sm" href="#contact">Contact the office →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band" aria-label="Enrolment">
+    <div class="wrap">
+      <h2>Admissions are open for LKG to Class 5</h2>
+      <a class="btn btn-gold" href="#contact" onClick="{{ openEnroll }}">Enroll your kid →</a>
     </div>
   </section>
 </sc-if>
@@ -690,8 +763,10 @@
 <!-- Footer -->
 <footer class="site-footer">
   <div class="wrap foot-grid">
-    <div class="stack">
-      <img class="foot-logo" src="assets/logo/Front-Age Academy LOGO.png" alt="FRONT - AGE STUDIES logo" loading="lazy"/>
+    <div class="foot-brand">
+      <span class="foot-logo-wrap"><img class="foot-logo" src="assets/logo/Front-Age Academy LOGO.png" alt="FRONT - AGE STUDIES logo" loading="lazy"/></span>
+      <span class="foot-name">FRONT – AGE STUDIES</span>
+      <span class="foot-tag">Knowledge is our weapon</span>
       <p>Welcome to <strong>Frontage Studies,</strong> where every child's potential is nurtured and celebrated.</p>
       <div class="soc">
         <a href="https://www.facebook.com/Front-Age-Studies-102368091861850" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><i class="bi bi-facebook" aria-hidden="true"></i></a>
@@ -703,27 +778,31 @@
     <nav aria-label="Footer">
       <h2>Quick links</h2>
       <ul class="foot-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About Us</a></li>
-        <li><a href="#program">Program</a></li>
-        <li><a href="#admission">Admission</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li class="foot-md-item"><a class="foot-md" href="#mandatory-disclosure"><i class="bi bi-file-earmark-pdf-fill" aria-hidden="true"></i><span>Mandatory Disclosure</span></a></li>
+        <li><a href="#home"><i class="bi bi-chevron-right" aria-hidden="true"></i>Home</a></li>
+        <li><a href="#about"><i class="bi bi-chevron-right" aria-hidden="true"></i>About Us</a></li>
+        <li><a href="#program"><i class="bi bi-chevron-right" aria-hidden="true"></i>Program</a></li>
+        <li><a href="#admission"><i class="bi bi-chevron-right" aria-hidden="true"></i>Admission</a></li>
+        <li><a href="#gallery"><i class="bi bi-chevron-right" aria-hidden="true"></i>Gallery</a></li>
+        <li><a href="#contact"><i class="bi bi-chevron-right" aria-hidden="true"></i>Contact</a></li>
       </ul>
+      <a class="foot-md" href="#mandatory-disclosure"><i class="bi bi-file-earmark-pdf-fill" aria-hidden="true"></i><span>Mandatory Disclosure</span></a>
     </nav>
     <div>
       <h2>Contact</h2>
       <ul class="foot-contact">
-        <li><i class="bi bi-geo-alt-fill" aria-hidden="true"></i><span>Address:- Punaura Dham, Near Baba Pokhar, Punaura Sitamarhi – 843302 (Bihar)</span></li>
-        <li><i class="bi bi-building" aria-hidden="true"></i><span>City Office: - Hospital Road, Professor's Colony, KVJ Nagar, Sitamarhi, Bihar 843302</span></li>
-        <li><i class="bi bi-envelope-fill" aria-hidden="true"></i><a href="mailto:frontagestudies123@gmail.com" style="word-break:break-word">frontagestudies123@gmail.com</a></li>
+        <li><i class="bi bi-geo-alt-fill" aria-hidden="true"></i><span>Punaura Dham, Near Baba Pokhar, Punaura, Sitamarhi – 843302 (Bihar)</span></li>
+        <li><i class="bi bi-building" aria-hidden="true"></i><span>City Office: Hospital Road, Professor's Colony, KVJ Nagar, Sitamarhi, Bihar 843302</span></li>
         <li><i class="bi bi-telephone-fill" aria-hidden="true"></i><span><a href="tel:8804045772">8804045772</a>, <a href="tel:8271788118">8271788118</a>, <a href="tel:8380465933">8380465933</a></span></li>
+        <li><i class="bi bi-envelope-fill" aria-hidden="true"></i><a href="mailto:frontagestudies123@gmail.com" style="word-break:break-word">frontagestudies123@gmail.com</a></li>
         <!-- School timings hidden: <li><i class="bi bi-clock-fill" aria-hidden="true"></i><span>Summer Time :- 07:00am to 02:00pm<br/>Winter time :- 08:00am to 03:00pm.</span></li> -->
       </ul>
     </div>
   </div>
-  <div class="foot-bottom">Copyright © {{ year }} FRONT - AGE STUDIES. Powered by FRONT - AGE STUDIES.</div>
+  <div class="foot-bottom">
+    <div class="wrap foot-bottom-in">
+      <span>Copyright © {{ year }} FRONT - AGE STUDIES. All rights reserved.</span>
+    </div>
+  </div>
 </footer>
 
 <!-- Floating actions -->
@@ -842,11 +921,11 @@
 // ---------------------------------------------------------------------------
 const PHOTOS = {
   hero: ['assets/images/Media (1).png', 'assets/images/Media (7).jpeg', 'assets/images/Media (8).jpeg'],       // up to 3 hero photographs (first is the large one)
-  principal: '',            // Anuranjana Kumari
-  about: '',
-  admission: ['', ''],
-  programs: ['', ''],       // Pre school, Primary School
-  team: ['', '', ''],       // Founder, Manager, Director
+  principal: 'assets/images/anuranjana-kumari.png', // Anuranjana Kumari
+  about: 'assets/images/Media (11).jpeg',
+  admission: ['assets/images/Media (4).jpeg', 'assets/images/Media (8).jpeg', 'assets/images/Media (10).jpeg', 'assets/images/Media (2).jpeg'],
+  programs: ['assets/images/Media (9).jpeg', 'assets/images/Media (6).jpeg'],       // Pre school, Primary School
+  team: ['', 'assets/images/anuranjana-kumari.png', ''],       // Founder, Manager, Director
   testimonials: ['', '', '', '', '', '']
 };
 const GALLERY = Array.from({ length: 11 }, (_, i) => 'assets/images/Media (' + (i + 1) + ').' + (i ? 'jpeg' : 'png'));
@@ -915,6 +994,7 @@ const REQ = ['Completed admission form', 'Birth certificate (copy)', 'Emergency 
 const WHY_CHOOSE = ['A well-rounded curriculum focusing on academic excellence and holistic development.', 'Highly qualified and dedicated faculty.', 'State-of-the-art facilities and a safe learning environment.', 'A strong emphasis on values, leadership, and creativity.', 'Engaging extracurricular activities and sports programs.'];
 
 const NAV = [['home', 'Home'], ['about', 'About'], ['program', 'Program'], ['admission', 'Admission'], ['gallery', 'Gallery'], ['mandatory-disclosure', 'Mandatory Disclosure'], ['contact', 'Contact']];
+const SUBTITLES = { about: 'Since 1998, shaping young minds with knowledge, values and care.', program: 'Age-appropriate learning from the very first school day to Class 5.', admission: 'Admissions are open for LKG to Class 5. Here is everything you need to know.' };
 const TITLES = { about: 'About us', program: 'Our program', admission: 'Admission', contact: 'Contact', gallery: 'Gallery', 'mandatory-disclosure': 'Mandatory Disclosure' };
 const FORM_LABELS = [['student_name', "Student's Name"], ['dob', 'Date of Birth'], ['class', 'Admission for Class'], ['gender', 'Gender'], ['previous_school', 'Previous School (if any)'], ['name', "Parent's Name"], ['phone', 'Mobile Number'], ['whatsapp', 'WhatsApp Number'], ['email', 'Email'], ['address', 'Address / Locality'], ['call_time', 'Preferred time to call'], ['referral', 'How did you hear about us?'], ['message', 'Message'], ['visit', 'I would like to schedule a school visit.']];
 
@@ -1079,6 +1159,7 @@ class Component extends DCLogic {
       isDisclosure: s.page === 'mandatory-disclosure',
       isDoc: isDocPage && !!cur, docMissing: isDocPage && s.docsState !== 'loading' && !cur,
       showBanner: s.page !== 'home',
+      bannerSub: isDocPage ? '' : (SUBTITLES[s.page] || ''),
       bannerTitle: isDocPage ? (cur ? cur.title : (s.docsState === 'loading' ? 'Mandatory Disclosure' : 'Document not found')) : TITLES[s.page],
       crumbs: isDocPage
         ? [{ label: 'Mandatory Disclosure', href: '#mandatory-disclosure', link: true }, { label: cur ? cur.title : 'Document', last: true }]
@@ -1096,12 +1177,12 @@ class Component extends DCLogic {
       showAll: s.showAll, notShowAll: !s.showAll, allLabel: s.showAll ? 'Back to slider' : 'View all photos',
       toggleAll: () => this.setState(x => ({ showAll: !x.showAll })),
       lbOpen: s.lb >= 0 && gallery.length > 0,
-      lbImg: s.lb >= 0 && gallery[s.lb] ? h('img', { src: gallery[s.lb], alt: 'Gallery photo ' + (s.lb + 1), style: { maxWidth: 'min(1000px, calc(100% - 140px))', maxHeight: '86vh', borderRadius: 6, objectFit: 'contain' } }) : null,
+      lbImg: s.lb >= 0 && gallery[s.lb] ? h('img', { key: gallery[s.lb], src: gallery[s.lb], alt: 'Gallery photo ' + (s.lb + 1), style: { maxWidth: 'min(1000px, calc(100% - 140px))', maxHeight: '86vh', borderRadius: 6, objectFit: 'contain' } }) : null,
       lbCount: (s.lb + 1) + ' / ' + gallery.length,
       lbClose: e => { if (e.target === e.currentTarget) this.setState({ lb: -1 }); },
       lbPrev: e => { e.stopPropagation(); this.lbStep(-1); }, lbNext: e => { e.stopPropagation(); this.lbStep(1); },
 
-      activities: ACTS.map((a, i) => ({ title: a[0], text: a[1], num: '0' + (i + 1), icon: 'bi bi-' + ACT_ICON[i] })),
+      activities: ACTS.map((a, i) => ({ title: a[0], text: a[1], icon: 'bi bi-' + ACT_ICON[i], cls: 'act-step act-t' + (i % 4) })),
 
       bookTabs: ['All', ...BOOKS.map(b => b[0])].map(l => ({ label: l, sel: s.book === l, pick: () => this.setState({ book: l }) })),
       exploreBooks: () => this.setState({ book: 'All' }),
@@ -1109,8 +1190,8 @@ class Component extends DCLogic {
       testimonials: TESTI.map(t => { const img = this.photo(t[1]); return { name: t[0], quote: t[2], initial: img ? '' : t[0][0], photo: img ? h('img', { src: img, alt: '', loading: 'lazy', onError: () => this.setState(x => ({ bad: { ...x.bad, [img]: true } })) }) : null }; }),
 
       team: TEAM.map((m, i) => { const img = this.photo(m.img); return { ...m, img, el: img ? this.img(img, m.name) : null, noImg: !img, open: s.open === i, msgId: 'team-msg-' + i, btn: s.open === i ? 'Close message' : 'Read message', icon: s.open === i ? 'bi bi-chevron-up' : 'bi bi-chevron-down', toggle: () => this.setState(x => ({ open: x.open === i ? -1 : i })) }; }),
-      programPage: PROGRAM_PAGE.map((p, i) => { const img = this.photo(PHOTOS.programs[i]); return { num: p[0], title: p[1], text: p[2], img, el: img ? this.img(img, p[1], 'cover') : null, cls: img ? 'prog-row has-photo' : 'prog-row' }; }),
-      steps: STEPS.map(x => ({ title: x[0], text: x[1] })),
+      programPage: PROGRAM_PAGE.map((p, i) => { const img = this.photo(PHOTOS.programs[i]); return { num: p[0], title: p[1], text: p[2], img, el: img ? this.img(img, p[1], 'cover') : null, cls: 'pp-row' + (img ? ' has-photo' : '') + (i % 2 ? ' pp-flip' : '') }; }),
+      steps: STEPS.map((x, i) => ({ title: x[0], text: x[1], icon: 'bi bi-' + ['chat-heart', 'file-earmark-text', 'people', 'patch-check'][i % 4] })),
       requiredDocs: REQ, whyChoose: WHY_CHOOSE,
 
       submit: this.submit, sending: s.sending, submitLabel: s.sending ? 'Sending…' : 'Submit',
