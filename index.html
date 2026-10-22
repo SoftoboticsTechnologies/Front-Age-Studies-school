@@ -144,6 +144,7 @@
         <div class="leader-body">
           <span class="eyebrow">A message to parents</span>
           <h3 id="leader-name">Anuranjana Kumari</h3>
+          <p class="leader-role">Manager, FRONT-AGE STUDIES</p>
           <ul class="creds">
             <li><i class="bi bi-mortarboard-fill" aria-hidden="true"></i>Graduation in Zoology</li>
             <li><i class="bi bi-mortarboard-fill" aria-hidden="true"></i>Post graduation in Zoology</li>
@@ -178,6 +179,21 @@
             <sc-for list="{{ gallery }}" as="g"><button type="button" onClick="{{ g.open }}" aria-label="Open photo {{ g.n }}">{{ g.el }}</button></sc-for>
           </div>
         </sc-if>
+      </div>
+    </section>
+  </sc-if>
+
+  <!-- In the news (preview; full list on the News page) -->
+  <sc-if value="{{ hasNews }}">
+    <section class="sec" style="padding-top:0" aria-labelledby="news-title">
+      <div class="wrap">
+        <div class="sec-head">
+          <div class="stack"><span class="eyebrow">In the news</span><h2 class="h-sec" id="news-title">FRONT - AGE STUDIES in the newspapers</h2></div>
+          <a class="btn btn-outline btn-sm" href="#news">View all news <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+        </div>
+        <div class="news-grid">
+          <sc-for list="{{ newsPreview }}" as="n"><button type="button" class="news-card" onClick="{{ n.open }}" aria-label="Open news clipping {{ n.n }}">{{ n.el }}</button></sc-for>
+        </div>
       </div>
     </section>
   </sc-if>
@@ -407,7 +423,7 @@
       </div>
       <ul class="facts">
         <li><i class="bi bi-bank2" aria-hidden="true"></i><div><span>Name of the School</span><b>FRONT – AGE STUDIES</b></div></li>
-        <li><i class="bi bi-mortarboard-fill" aria-hidden="true"></i><div><span>Classes</span><b>LKG to Class 5</b></div></li>
+        <li><i class="bi bi-mortarboard-fill" aria-hidden="true"></i><div><span>Classes</span><b>Play to Class 12</b></div></li>
         <li><i class="bi bi-envelope-fill" aria-hidden="true"></i><div><span>Email</span><b><a href="mailto:frontagestudies123@gmail.com">frontagestudies123@gmail.com</a></b></div></li>
         <li><i class="bi bi-geo-alt-fill" aria-hidden="true"></i><div><span>Address</span><b>Punaura Dham, Near Baba Pokhar, Punaura Sitamarhi – 843302 (Bihar)</b></div></li>
         <li><i class="bi bi-building" aria-hidden="true"></i><div><span>City Office</span><b>Hospital Road, Professor's Colony, KVJ Nagar, Sitamarhi, Bihar 843302</b></div></li>
@@ -431,7 +447,7 @@
               <sc-if value="{{ m.noImg }}"><span class="mono" aria-hidden="true">{{ m.initials }}</span></sc-if>
             </div>
             <div class="profile-body">
-              <div><h3>{{ m.name }}</h3><span class="role">{{ m.role }}</span></div>
+              <div><h3>{{ m.name }}</h3><span class="role">{{ m.role }}</span><sc-if value="{{ m.quals }}"><p class="quals">{{ m.quals }}</p></sc-if></div>
               <sc-if value="{{ m.open }}"><div class="profile-msg" id="{{ m.msgId }}"><sc-for list="{{ m.msg }}" as="para"><p>{{ para }}</p></sc-for></div></sc-if>
               <button type="button" class="text-btn" onClick="{{ m.toggle }}" aria-expanded="{{ m.open }}">{{ m.btn }} <i class="{{ m.icon }}" aria-hidden="true"></i></button>
             </div>
@@ -667,6 +683,17 @@
   </section>
 </sc-if>
 
+<!-- ================= NEWS ================= -->
+<sc-if value="{{ isNews }}">
+  <section class="sec">
+    <div class="wrap">
+      <div class="news-wall">
+        <sc-for list="{{ news }}" as="n"><button type="button" onClick="{{ n.open }}" aria-label="Open news clipping {{ n.n }}">{{ n.el }}</button></sc-for>
+      </div>
+    </div>
+  </section>
+</sc-if>
+
 <!-- ================= MANDATORY DISCLOSURE ================= -->
 <sc-if value="{{ isDisclosure }}">
   <section class="sec">
@@ -710,7 +737,7 @@
       <section class="md-sec" aria-labelledby="md-a">
         <div class="md-sec-head"><div><h2 id="md-a">School particulars</h2></div></div>
         <div class="table-card">
-          <table class="kv"><tbody><tr><th scope="row">Name of the School</th><td>FRONT – AGE STUDIES</td></tr><tr><th scope="row">Address</th><td>Punaura Dham, Near Baba Pokhar, Punaura Sitamarhi – 843302 (Bihar)</td></tr><tr><th scope="row">City Office</th><td>Hospital Road, Professor's Colony, KVJ Nagar, Sitamarhi, Bihar 843302</td></tr><tr><th scope="row">Classes</th><td>LKG to Class 5</td></tr><tr><th scope="row">Phone</th><td><a href="tel:8804045772">8804045772</a>, <a href="tel:8271788118">8271788118</a>, <a href="tel:8380465933">8380465933</a></td></tr><tr><th scope="row">Email</th><td><a href="mailto:frontagestudies123@gmail.com">frontagestudies123@gmail.com</a></td></tr><!-- School timings hidden: <tr><th scope="row">School Timings</th><td>Summer Time :- 07:00am to 02:00pm<br/>Winter time :- 08:00am to 03:00pm.</td></tr> --></tbody></table>
+          <table class="kv"><tbody><tr><th scope="row">Name of the School</th><td>FRONT – AGE STUDIES</td></tr><tr><th scope="row">Address</th><td>Punaura Dham, Near Baba Pokhar, Punaura Sitamarhi – 843302 (Bihar)</td></tr><tr><th scope="row">City Office</th><td>Hospital Road, Professor's Colony, KVJ Nagar, Sitamarhi, Bihar 843302</td></tr><tr><th scope="row">Classes</th><td>Play to Class 12</td></tr><tr><th scope="row">Phone</th><td><a href="tel:8804045772">8804045772</a>, <a href="tel:8271788118">8271788118</a>, <a href="tel:8380465933">8380465933</a></td></tr><tr><th scope="row">Email</th><td><a href="mailto:frontagestudies123@gmail.com">frontagestudies123@gmail.com</a></td></tr><!-- School timings hidden: <tr><th scope="row">School Timings</th><td>Summer Time :- 07:00am to 02:00pm<br/>Winter time :- 08:00am to 03:00pm.</td></tr> --></tbody></table>
         </div>
       </section>
     </div>
@@ -783,6 +810,7 @@
         <li><a href="#program"><i class="bi bi-chevron-right" aria-hidden="true"></i>Program</a></li>
         <li><a href="#admission"><i class="bi bi-chevron-right" aria-hidden="true"></i>Admission</a></li>
         <li><a href="#gallery"><i class="bi bi-chevron-right" aria-hidden="true"></i>Gallery</a></li>
+        <li><a href="#news"><i class="bi bi-chevron-right" aria-hidden="true"></i>News</a></li>
         <li><a href="#contact"><i class="bi bi-chevron-right" aria-hidden="true"></i>Contact</a></li>
       </ul>
       <a class="foot-md" href="#mandatory-disclosure"><i class="bi bi-file-earmark-pdf-fill" aria-hidden="true"></i><span>Mandatory Disclosure</span></a>
@@ -925,10 +953,15 @@ const PHOTOS = {
   about: 'assets/images/Media (11).jpeg',
   admission: ['assets/images/Media (4).jpeg', 'assets/images/Media (8).jpeg', 'assets/images/Media (10).jpeg', 'assets/images/Media (2).jpeg'],
   programs: ['assets/images/Media (9).jpeg', 'assets/images/Media (6).jpeg'],       // Pre school, Primary School
-  team: ['', 'assets/images/anuranjana-kumari.jpeg', ''],       // Founder, Manager, Director
+  team: ['assets/images/pramod-ranjan-bhardwaj.jpeg', 'assets/images/anuranjana-kumari.jpeg', 'assets/images/apurva-bhardwaj.jpeg', 'assets/images/female-avatar.svg'],       // Founder, Manager, Director, Principal
   testimonials: ['', '', '', '', '', '']
 };
-const GALLERY = Array.from({ length: 11 }, (_, i) => 'assets/images/Media (' + (i + 1) + ').' + (i ? 'jpeg' : 'png'));
+const GALLERY = Array.from({ length: 11 }, (_, i) => 'assets/images/Media (' + (i + 1) + ').' + (i ? 'jpeg' : 'png')).concat(
+  ['1 (1).JPG', '1 (2).JPG', '1 (3).JPG', '1 (4).JPG', '1 (6).JPG', '1 (7).JPG', '1 (8).JPG', '1 (9).JPG', '1 (10).JPG', '1 (11).JPG', '1 (12).JPG', '1 (13).JPG', '5.jpg', '6.jpg', '7.jpg', '20211223_120415.jpg', '20211223_121139.jpg', 'A7400077.JPG', 'DSC_6521.JPG', 'DSC_6523.JPG', 'DSC_6543.JPG', 'DSC_6545.JPG', 'DSC_6553.JPG', 'DSC_6555.JPG', 'DSC_6557.JPG', 'DSC_6560.JPG', 'DSC_6566.JPG', 'DSC_6568.JPG', 'DSC_6569.JPG', 'DSC_6571.JPG', 'DSC_6578.JPG', 'DSC_6579.JPG', 'DSC_6580.JPG', 'DSC_6591.JPG', 'DSC_6594.JPG', 'DSC_6595.JPG', 'DSC_6598.JPG', 'DSC_6601.JPG', 'DSC_6603.JPG', 'DSC_6604.JPG', 'DSC_6605.JPG', 'DSC_6611.JPG', 'DSC_6615.JPG', 'DSC_6617.JPG', 'DSC_6618.JPG', 'DSC_6622.JPG', 'DSC_6634.JPG', 'DSC_6636.JPG', 'DSC_6647.JPG', 'DSC_6648.JPG', 'DSC_6652.JPG', 'DSC_6653.JPG', 'DSC_6654.JPG', 'DSC_6655.JPG', 'DSC_6678.JPG', 'DSC_6680.JPG', 'DSC_6682.JPG', 'DSC_6683.JPG', 'DSC_6686.JPG', 'DSC_6689.JPG', 'DSC_6692.JPG', 'DSC_6693.JPG', 'DSC_6697.JPG', 'DSC_6703.JPG', 'DSC_6704.JPG', 'DSC_6713.JPG', 'DSC_6991.JPG', 'DSC_6992.JPG', 'DSC_6995.JPG', 'DSC_6998.JPG', 'DSC_7004.JPG', 'DSC_7010.JPG', 'DSC_7040.JPG', 'DSC_7043.JPG', 'DSC_7045.JPG', 'DSC_7047.JPG', 'DSC_7070.JPG', 'DSC_7082.JPG', 'DSC_7084.JPG', 'DSC_7088.JPG', 'DSC_7104.JPG', 'DSC_7105.JPG', 'DSC_7309.JPG', 'DSC_7374.JPG', 'DSC_7379.JPG', 'DSC_7383.JPG', 'DSC_7395.JPG', 'DSC_7406.JPG', 'DSC_7408.JPG', 'DSC_7417.JPG', 'DSC_7445.JPG', 'DSC_7448.JPG', 'DSC_9683.JPG', 'DSC_9693.JPG', 'DSC_9701.JPG', 'DSC_9702.JPG', 'DSC_9707.JPG', 'DSC_9809.JPG', 'DSC_9810.JPG', 'DSC_9836.JPG', 'DSC_9869.JPG', 'june.jpg', 'june 2.jpg', 'june 3.jpg', 'june 4.jpg']
+    .map(f => 'assets/Web Site Piks/' + f));   // school event photographs
+// Newspaper clippings about the school (News page; the first 4 are previewed on Home).
+const NEWS = ['003.jpg', '17 Augst.jpg', 'WhatsApp Image 2024-08-01 at 06.53.44_fbfcea33.jpg', 'Dainik Bhaskar police samman.jpg', 'Dainik Gagran akhil bhartiy kavi sammelan.jpg', 'Dainik Gagran genius.jpg', 'Dr. Ramashish thakur.jpg', 'Envarment Day.jpg', 'Eye donent.jpg', 'Eye donent 2.jpg', 'Jun 2024.jpg', 'WhatsApp Image 2022-12-20 at 1.13.38 PM.jpeg', 'WhatsApp Image 2022-12-20 at 1.13.39 PM.jpeg', 'WhatsApp Image 2022-12-20 at 1.13.42 PM (1).jpeg', 'WhatsApp Image 2022-12-20 at 1.16.47 PM.jpeg', 'WhatsApp Image 2022-12-20 at 1.16.47 PM (1).jpeg', 'WhatsApp Image 2022-12-20 at 1.16.48 PM.jpeg', 'WhatsApp Image 2022-12-20 at 1.16.48 PM (1).jpeg', 'WhatsApp Image 2022-12-20 at 1.16.50 PM.jpeg', 'WhatsApp Image 2022-12-20 at 1.16.50 PM (1).jpeg', 'WhatsApp Image 2022-12-20 at 1.16.51 PM (1).jpeg', 'WhatsApp Image 2022-12-20 at 1.20.07 PM (1).jpeg']
+  .map(f => 'assets/News/' + f);
 
 // Classes offered: LKG to Class 5 only. Used to validate every enquiry form.
 const ALLOWED_CLASSES = ['LKG', 'UKG', 'Class 1', 'Class 2', 'Class 3', 'Class 4', 'Class 5'];
@@ -974,9 +1007,10 @@ const TESTI = [
 ].map((t, i) => [t[0], PHOTOS.testimonials[i], t[1]]);
 
 const TEAM = [
-  { name: 'Lt. PRAMOD RANJAN BHARDWAJ', initials: 'PB', role: 'FOUNDER AND OUR MENTOR', msg: ['Besides, imparting education in accordance with the laid down education polices, our aim is provide opportunities to the students for an all round development of their personality. The aim of education in the new millennium is to help the children to achieve, not only, academic experience but also to improve their personality. They should love their country and ceaselessly strive for its progress with only one weapon in hand. It is therefore appropriate that our school’s Motto is “KNOWLEDGE IS OUR WEAPON”'] },
+  { name: 'Lt. PRAMOD RANJAN BHARDWAJ', initials: 'PB', role: 'FOUNDER AND OUR MENTOR', msg: ['Besides imparting education in accordance with the established educational policies, our aim is to provide meaningful opportunities to the students for their all-round development.', 'The aim of education in the new millennium is to help children achieve not only academic excellence but also to develop their personality. They should love their country and continually strive for its progress with knowledge as their greatest strength.', 'It is, therefore, appropriate that our school’s motto is “KNOWLEDGE IS OUR WEAPON.”'] },
   { name: 'ANURANJANA BHARDWAJ', initials: 'AB', role: 'Manager', msg: ['Human life is a storehouse of virtues and talents and if the basic virtues or God-given talents of any human being are not utilized properly in his life, then those virtues and talents go to waste. For the bright future of the country and for building a strong youth who is alert, thoughtful and embraces the latest dimensions, it is necessary that along with knowledge of subjects, children should learn to solve problems, think logically and creatively, think new, expand their thoughts. Taking these facts as a base, Front-Edge Studies has been moulding children with patience and perseverance for the last 25 years. In the true sense, these children can bring glory to the country and also make themselves proud.', 'Thanks for your love and support!'] },
-  { name: 'Dr. APURVA BHARDWAJ', initials: 'AB', role: 'DIRECTOR', msg: ['You will also find various forms for different purposes at the back of the diary, which would help parents and the school to actively interact with each other.', 'Therefore, I would request you and your child to carefully go through this diary to know the details, so that you get acquainted with the working of the school. For pre-primary children and other children who are not able to read properly, kindly read out the diary and make them understand the relevant contents.'] }
+  { name: 'Dr. APURVA BHARDWAJ', initials: 'AB', role: 'DIRECTOR', quals: 'MBBS, P.G (Dermatologist)', msg: ['You will also find various forms meant for different purposes at the back of this diary, which would help parents and the school to actively interact with each other.', 'Therefore, I request you and your child to go through this diary carefully to know the details, so that you get acquainted with the functioning of the school. For pre-primary students and other children who are not yet able to read independently, kindly read out the diary and make them understand the relevant contents.'] },
+  { name: 'DIBYA SINGH', initials: 'DS', role: 'PRINCIPAL', quals: 'Graduation & Post-graduation in Zoology · B.Ed. · 20 years of experience in School Academics and Management', msg: ['At FRONT-AGE STUDIES, we have always believed that both teachers and parents play an important role in the growth and development of a child. It is only through open communication, fruitful discussions, and active participation that we can together lay a strong foundation for our children.', 'The FRONT-AGE STUDIES Diary is one of the ways we use to bridge the communication gap between the school and parents. Not only will this diary act as a handbook for parents, giving you instant answers to most of your questions, it will also establish a valuable liaison between teachers and parents with regard to the quality and quantity of work being attempted by the child in the school and at home.', 'You will also find various forms for different purposes at the back of the diary, which would help parents and the school to actively interact with each other.'] }
 ].map((m, i) => ({ ...m, img: PHOTOS.team[i] }));
 
 const PROGRAM_PAGE = [
@@ -993,9 +1027,9 @@ const STEPS = [
 const REQ = ['Completed admission form', 'Birth certificate (copy)', 'Emergency medical authorization', 'Previous academic records (if applicable)', 'Passport-size photographs of the student', 'Transfer certificate (for students coming from another school)'];
 const WHY_CHOOSE = ['A well-rounded curriculum focusing on academic excellence and holistic development.', 'Highly qualified and dedicated faculty.', 'State-of-the-art facilities and a safe learning environment.', 'A strong emphasis on values, leadership, and creativity.', 'Engaging extracurricular activities and sports programs.'];
 
-const NAV = [['home', 'Home'], ['about', 'About'], ['program', 'Program'], ['admission', 'Admission'], ['gallery', 'Gallery'], ['mandatory-disclosure', 'Mandatory Disclosure'], ['contact', 'Contact']];
-const SUBTITLES = { about: 'Since 1998, shaping young minds with knowledge, values and care.', program: 'Age-appropriate learning from LKG to Class 5.', admission: 'Admissions are open for LKG to Class 5. Here is everything you need to know.' };
-const TITLES = { about: 'About us', program: 'Our program', admission: 'Admission', contact: 'Contact', gallery: 'Gallery', 'mandatory-disclosure': 'Mandatory Disclosure' };
+const NAV = [['home', 'Home'], ['about', 'About'], ['program', 'Program'], ['admission', 'Admission'], ['gallery', 'Gallery'], ['news', 'News'], ['mandatory-disclosure', 'Mandatory Disclosure'], ['contact', 'Contact']];
+const SUBTITLES = { about: 'Since 1998, shaping young minds with knowledge, values and care.', program: 'Age-appropriate learning for every child.', admission: 'Admissions are open. Here is everything you need to know.', news: 'Our school events and achievements, as reported in the newspapers.' };
+const TITLES = { about: 'About us', program: 'Our program', admission: 'Admission', contact: 'Contact', gallery: 'Gallery', news: 'In the News', 'mandatory-disclosure': 'Mandatory Disclosure' };
 const FORM_LABELS = [['student_name', "Student's Name"], ['dob', 'Date of Birth'], ['class', 'Admission for Class'], ['gender', 'Gender'], ['previous_school', 'Previous School (if any)'], ['name', "Parent's Name"], ['phone', 'Mobile Number'], ['whatsapp', 'WhatsApp Number'], ['email', 'Email'], ['address', 'Address / Locality'], ['call_time', 'Preferred time to call'], ['referral', 'How did you hear about us?'], ['message', 'Message'], ['visit', 'I would like to schedule a school visit.']];
 
 const h = React.createElement;
@@ -1061,7 +1095,8 @@ class Component extends DCLogic {
     window.scrollTo(0, 0);
   };
   curDoc() { return this.state.docs.find(x => x.id === this.state.doc); }
-  lbStep(n) { if (GALLERY.length) this.setState(s => ({ lb: (s.lb + n + GALLERY.length) % GALLERY.length })); }
+  lbList(s = this.state) { return (s.lbSet === 'news' ? NEWS : GALLERY).filter(g => !s.bad[g]); }
+  lbStep(n) { this.setState(s => { const len = this.lbList(s).length; return len ? { lb: (s.lb + n + len) % len } : null; }); }
   img(src, alt, cls, lazy = true) { return h('img', { src, alt, className: cls, loading: lazy ? 'lazy' : undefined, decoding: 'async', onError: () => { console.warn('[image] failed to load:', src); this.setState(x => ({ bad: { ...x.bad, [src]: true } })); } }); }
   photo(src) { return src && !this.state.bad[src] ? src : ''; }
   rememberFocus() { this.returnFocus = document.activeElement; }
@@ -1130,7 +1165,8 @@ class Component extends DCLogic {
         ? this.img(d.thumb, 'First page of ' + d.title, 'paper-img')
         : h('span', { className: 'paper-fallback' }, h('i', { className: 'bi bi-file-earmark-pdf', 'aria-hidden': true }), d.title)
     }));
-    const gallery = GALLERY.filter(g => !s.bad[g]);
+    const gallery = GALLERY.filter(g => !s.bad[g]), news = NEWS.filter(g => !s.bad[g]), lbl = this.lbList(s);
+    const newsItems = news.map((src, i) => ({ n: i + 1, el: this.img(src, 'Newspaper clipping about FRONT - AGE STUDIES ' + (i + 1)), open: () => { this.rememberFocus(); this.setState({ lb: i, lbSet: 'news' }); } }));
     const leader = this.photo(PHOTOS.principal), about = this.photo(PHOTOS.about);
     const heroList = PHOTOS.hero.map(p => this.photo(p)).filter(Boolean);
     const admPhotos = PHOTOS.admission.map(p => this.photo(p)).filter(Boolean).map((src, i) => ({ src, el: this.img(src, i ? 'Children at FRONT - AGE STUDIES' : 'Admission at FRONT - AGE STUDIES', 'cover') }));
@@ -1155,7 +1191,7 @@ class Component extends DCLogic {
       openMenu: () => { this.rememberFocus(); this.setState({ menu: true }); },
       closeMenu: () => this.setState({ menu: false }),
       closeMenuBg: e => { if (e.target === e.currentTarget) this.setState({ menu: false }); },
-      isHome: s.page === 'home', isAbout: s.page === 'about', isProgram: s.page === 'program', isAdmission: s.page === 'admission', isContact: s.page === 'contact', isGallery: s.page === 'gallery',
+      isHome: s.page === 'home', isAbout: s.page === 'about', isProgram: s.page === 'program', isAdmission: s.page === 'admission', isContact: s.page === 'contact', isGallery: s.page === 'gallery', isNews: s.page === 'news',
       isDisclosure: s.page === 'mandatory-disclosure',
       isDoc: isDocPage && !!cur, docMissing: isDocPage && s.docsState !== 'loading' && !cur,
       showBanner: s.page !== 'home',
@@ -1171,14 +1207,15 @@ class Component extends DCLogic {
       whyUs: WHY.map((w, i) => ({ n: '0' + (i + 1), title: w[0], lead: w[1], text: w[2] })),
 
       hasGallery: gallery.length > 0, noGallery: gallery.length === 0,
-      gallery: gallery.map((src, i) => { const on = s.showAll || s.gi % gallery.length === i; return { src, n: i + 1, cover: this.img(src, 'FRONT - AGE STUDIES gallery photo ' + (i + 1), 'cover'), el: this.img(src, 'FRONT - AGE STUDIES gallery photo ' + (i + 1)), op: on ? 1 : 0, pe: on ? 'auto' : 'none', hidden: !on, tab: on ? 0 : -1, open: () => { this.rememberFocus(); this.setState({ lb: i }); } }; }),
+      gallery: gallery.map((src, i) => { const cur = s.gi % gallery.length, on = s.showAll || cur === i, near = on || Math.abs(cur - i) === 1 || Math.abs(cur - i) === gallery.length - 1; return { src, n: i + 1, cover: near ? this.img(src, 'FRONT - AGE STUDIES gallery photo ' + (i + 1), 'cover') : null, el: this.img(src, 'FRONT - AGE STUDIES gallery photo ' + (i + 1)), op: on ? 1 : 0, pe: on ? 'auto' : 'none', hidden: !on, tab: on ? 0 : -1, open: () => { this.rememberFocus(); this.setState({ lb: i, lbSet: 'gallery' }); } }; }),
+      hasNews: news.length > 0, news: newsItems, newsPreview: newsItems.slice(0, 4),
       gPrev: () => this.setState(x => ({ gi: (x.gi - 1 + gallery.length) % gallery.length })),
       gNext: () => this.setState(x => ({ gi: (x.gi + 1) % gallery.length })),
       showAll: s.showAll, notShowAll: !s.showAll, allLabel: s.showAll ? 'Back to slider' : 'View all photos',
       toggleAll: () => this.setState(x => ({ showAll: !x.showAll })),
-      lbOpen: s.lb >= 0 && gallery.length > 0,
-      lbImg: s.lb >= 0 && gallery[s.lb] ? h('img', { key: gallery[s.lb], src: gallery[s.lb], alt: 'Gallery photo ' + (s.lb + 1), style: { maxWidth: 'min(1000px, calc(100% - 140px))', maxHeight: '86vh', borderRadius: 6, objectFit: 'contain' } }) : null,
-      lbCount: (s.lb + 1) + ' / ' + gallery.length,
+      lbOpen: s.lb >= 0 && lbl.length > 0,
+      lbImg: s.lb >= 0 && lbl[s.lb] ? h('img', { key: lbl[s.lb], src: lbl[s.lb], alt: (s.lbSet === 'news' ? 'News clipping ' : 'Gallery photo ') + (s.lb + 1), style: { maxWidth: 'min(1000px, calc(100% - 140px))', maxHeight: '86vh', borderRadius: 6, objectFit: 'contain' } }) : null,
+      lbCount: (s.lb + 1) + ' / ' + lbl.length,
       lbClose: e => { if (e.target === e.currentTarget) this.setState({ lb: -1 }); },
       lbPrev: e => { e.stopPropagation(); this.lbStep(-1); }, lbNext: e => { e.stopPropagation(); this.lbStep(1); },
 

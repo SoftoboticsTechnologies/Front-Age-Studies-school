@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Profile placeholder">
+  <rect width="400" height="400" fill="#e6eaf2"/>
+  <!-- hair (back) -->
+  <path d="M112 190c0-68 40-112 88-112s88 44 88 112c0 50-6 92-18 120H130c-12-28-18-70-18-120z" fill="#9aa5ba"/>
+  <!-- shoulders -->
+  <path d="M70 400c4-70 58-112 130-112s126 42 130 112z" fill="#b8c1d1"/>
+  <!-- neck -->
+  <path d="M176 250h48v48c0 14-48 14-48 0z" fill="#cdd4e0"/>
+  <!-- face -->
+  <ellipse cx="200" cy="190" rx="58" ry="68" fill="#cdd4e0"/>
+  <!-- hair (front fringe) -->
+  <path d="M142 182c4-52 30-82 64-82 36 0 58 30 54 70-30-6-58-22-74-46-8 26-26 46-44 58z" fill="#9aa5ba"/>
+</svg>
