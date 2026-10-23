@@ -143,7 +143,7 @@
         </div>
         <div class="leader-body">
           <span class="eyebrow">A message to parents</span>
-          <h3 id="leader-name">Anuranjana Kumari</h3>
+          <h3 id="leader-name">Anuranjana Bhardwaj</h3>
           <p class="leader-role">Manager, FRONT-AGE STUDIES</p>
           <ul class="creds">
             <li><i class="bi bi-mortarboard-fill" aria-hidden="true"></i>Graduation in Zoology</li>
@@ -950,7 +950,7 @@
 // ---------------------------------------------------------------------------
 const PHOTOS = {
   hero: ['assets/images/Media (1).png', 'assets/images/Media (7).jpeg', 'assets/images/Media (8).jpeg'],       // up to 3 hero photographs (first is the large one)
-  principal: 'assets/images/anuranjana-kumari.jpeg', // Anuranjana Kumari
+  principal: 'assets/images/anuranjana-kumari.jpeg', // Anuranjana Bhardwaj
   about: 'assets/images/Media (11).jpeg',
   admission: ['assets/images/Media (4).jpeg', 'assets/images/Media (8).jpeg', 'assets/images/Media (10).jpeg', 'assets/images/Media (2).jpeg'],
   programs: ['assets/images/Media (9).jpeg', 'assets/images/Media (6).jpeg'],       // Pre school, Primary School
@@ -1184,7 +1184,7 @@ class Component extends DCLogic {
       hasHeroPhotos: heroList.length > 0, noHeroPhotos: heroList.length === 0,
       heroGridCls: 'hero-photos hero-photos-' + heroList.length,
       heroImgs: heroList.map((src, i) => h('div', { key: src, className: 'hero-ph' }, this.img(src, i ? 'School activity at FRONT - AGE STUDIES' : 'Children at FRONT - AGE STUDIES', 'cover', i > 0))),
-      leaderImg: leader ? this.img(leader, 'Anuranjana Kumari') : null,
+      leaderImg: leader ? this.img(leader, 'Anuranjana Bhardwaj') : null,
       aboutImg: about ? this.img(about, 'Children at FRONT - AGE STUDIES', 'cover') : null,
       books: BOOKS.filter(b => s.book === 'All' || b[0] === s.book).map(b => ({ cls: b[0], price: b[1], items: b[2] })),
       nav: NAV.map(([id, label]) => ({ label, href: '#' + id, current: navPage === id ? 'page' : undefined })),
