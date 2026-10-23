@@ -188,7 +188,7 @@
     <section class="sec" style="padding-top:0" aria-labelledby="news-title">
       <div class="wrap">
         <div class="sec-head">
-          <div class="stack"><span class="eyebrow">In the news</span><h2 class="h-sec" id="news-title">FRONT - AGE STUDIES in the newspapers</h2></div>
+          <div class="stack"><span class="eyebrow">In the news</span><h2 class="h-sec" id="news-title">FRONT - AGE STUDIES in the news</h2></div>
           <a class="btn btn-outline btn-sm" href="#news">View all news <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
         </div>
         <div class="news-grid">
@@ -434,22 +434,23 @@
   </section>
 
   <section class="sec sec-cream" aria-labelledby="team-title">
-    <div class="wrap">
+    <div class="wrap team-wrap">
       <div class="act-head">
         <span class="eyebrow">Meet the management</span>
         <h2 class="h-sec" id="team-title">Experts in giving your children the best start</h2>
       </div>
       <div class="team">
         <sc-for list="{{ team }}" as="m">
-          <article class="profile">
-            <div class="profile-photo">
+          <article class="tm" aria-label="{{ m.name }}">
+            <div class="tm-photo">
               <sc-if value="{{ m.img }}">{{ m.el }}</sc-if>
               <sc-if value="{{ m.noImg }}"><span class="mono" aria-hidden="true">{{ m.initials }}</span></sc-if>
             </div>
-            <div class="profile-body">
-              <div><h3>{{ m.name }}</h3><span class="role">{{ m.role }}</span><sc-if value="{{ m.quals }}"><p class="quals">{{ m.quals }}</p></sc-if></div>
-              <sc-if value="{{ m.open }}"><div class="profile-msg" id="{{ m.msgId }}"><sc-for list="{{ m.msg }}" as="para"><p>{{ para }}</p></sc-for></div></sc-if>
-              <button type="button" class="text-btn" onClick="{{ m.toggle }}" aria-expanded="{{ m.open }}">{{ m.btn }} <i class="{{ m.icon }}" aria-hidden="true"></i></button>
+            <div class="tm-text">
+              <h3>{{ m.name }}</h3>
+              <span class="tm-role">{{ m.role }}</span>
+              <sc-if value="{{ m.quals }}"><p class="tm-quals">{{ m.quals }}</p></sc-if>
+              <blockquote class="tm-msg"><sc-for list="{{ m.msg }}" as="para"><p>{{ para }}</p></sc-for></blockquote>
             </div>
           </article>
         </sc-for>
@@ -615,7 +616,7 @@
             <div class="fgrid">
               <label class="field">Student's Name <span class="req">*</span><input name="student_name" required="required" autoComplete="off" enterKeyHint="next"/></label>
               <label class="field">Date of Birth <span class="req">*</span><input name="dob" type="date" required="required" max="{{ today }}"/></label>
-              <label class="field">Admission for Class <span class="req">*</span><select name="class" required="required"><option value="">Select class</option><option value="LKG">LKG</option><option value="UKG">UKG</option><option value="Class 1">Class 1</option><option value="Class 2">Class 2</option><option value="Class 3">Class 3</option><option value="Class 4">Class 4</option><option value="Class 5">Class 5</option></select></label>
+              <label class="field">Admission for Class <span class="req">*</span><select name="class" required="required"><option value="">Select class</option><option value="Play">Play</option><option value="LKG">LKG</option><option value="UKG">UKG</option><option value="Class 1">Class 1</option><option value="Class 2">Class 2</option><option value="Class 3">Class 3</option><option value="Class 4">Class 4</option><option value="Class 5">Class 5</option><option value="Class 6">Class 6</option><option value="Class 7">Class 7</option><option value="Class 8">Class 8</option><option value="Class 9">Class 9</option><option value="Class 10">Class 10</option><option value="Class 11">Class 11</option><option value="Class 12">Class 12</option></select></label>
               <fieldset class="field">
                 <legend style="font:600 14px var(--sans);letter-spacing:0;text-transform:none;color:var(--ink);margin-bottom:6px">Gender <span class="req">*</span></legend>
                 <div class="choices">
@@ -888,7 +889,7 @@
             <div class="fgrid">
               <label class="field">Student's Name <span class="req">*</span><input name="student_name" required="required" autoComplete="off" data-focus="enroll" enterKeyHint="next"/></label>
               <label class="field">Date of Birth <span class="req">*</span><input name="dob" type="date" required="required" max="{{ today }}"/></label>
-              <label class="field">Admission for Class <span class="req">*</span><select name="class" required="required"><option value="">Select class</option><option value="LKG">LKG</option><option value="UKG">UKG</option><option value="Class 1">Class 1</option><option value="Class 2">Class 2</option><option value="Class 3">Class 3</option><option value="Class 4">Class 4</option><option value="Class 5">Class 5</option></select></label>
+              <label class="field">Admission for Class <span class="req">*</span><select name="class" required="required"><option value="">Select class</option><option value="Play">Play</option><option value="LKG">LKG</option><option value="UKG">UKG</option><option value="Class 1">Class 1</option><option value="Class 2">Class 2</option><option value="Class 3">Class 3</option><option value="Class 4">Class 4</option><option value="Class 5">Class 5</option><option value="Class 6">Class 6</option><option value="Class 7">Class 7</option><option value="Class 8">Class 8</option><option value="Class 9">Class 9</option><option value="Class 10">Class 10</option><option value="Class 11">Class 11</option><option value="Class 12">Class 12</option></select></label>
               <fieldset class="field">
                 <legend style="font:600 14px var(--sans);letter-spacing:0;text-transform:none;color:var(--ink);margin-bottom:6px">Gender <span class="req">*</span></legend>
                 <div class="choices">
@@ -963,8 +964,8 @@ const GALLERY = Array.from({ length: 11 }, (_, i) => 'assets/images/Media (' + (
 const NEWS = ['003.jpg', '17 Augst.jpg', 'WhatsApp Image 2024-08-01 at 06.53.44_fbfcea33.jpg', 'Dainik Bhaskar police samman.jpg', 'Dainik Gagran akhil bhartiy kavi sammelan.jpg', 'Dainik Gagran genius.jpg', 'Dr. Ramashish thakur.jpg', 'Envarment Day.jpg', 'Eye donent.jpg', 'Eye donent 2.jpg', 'Jun 2024.jpg', 'WhatsApp Image 2022-12-20 at 1.13.38 PM.jpeg', 'WhatsApp Image 2022-12-20 at 1.13.39 PM.jpeg', 'WhatsApp Image 2022-12-20 at 1.13.42 PM (1).jpeg', 'WhatsApp Image 2022-12-20 at 1.16.47 PM.jpeg', 'WhatsApp Image 2022-12-20 at 1.16.47 PM (1).jpeg', 'WhatsApp Image 2022-12-20 at 1.16.48 PM.jpeg', 'WhatsApp Image 2022-12-20 at 1.16.48 PM (1).jpeg', 'WhatsApp Image 2022-12-20 at 1.16.50 PM.jpeg', 'WhatsApp Image 2022-12-20 at 1.16.50 PM (1).jpeg', 'WhatsApp Image 2022-12-20 at 1.16.51 PM (1).jpeg', 'WhatsApp Image 2022-12-20 at 1.20.07 PM (1).jpeg']
   .map(f => 'assets/News/' + f);
 
-// Classes offered: LKG to Class 5 only. Used to validate every enquiry form.
-const ALLOWED_CLASSES = ['LKG', 'UKG', 'Class 1', 'Class 2', 'Class 3', 'Class 4', 'Class 5'];
+// Classes offered: Play to Class 12. Used to validate every enquiry form.
+const ALLOWED_CLASSES = ['Play', 'LKG', 'UKG', ...Array.from({ length: 12 }, (_, i) => 'Class ' + (i + 1))];
 const FORM_ENDPOINT = 'api/contact.php';
 
 const PROGRAMS = [
@@ -1041,7 +1042,7 @@ const fileOf = d => d ? (d.legacyUrl || d.file.replace(/^\//, '')) : '';
 const today = () => { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); };
 
 class Component extends DCLogic {
-  state = { page: 'home', doc: null, docs: [], docsState: 'loading', q: '', book: 'All', showAll: false, enroll: false, adm: false, menu: false, bad: {}, gi: 0, lb: -1, open: -1, toast: '', toastOk: true, sending: false, formErr: '', formSrc: '', formWa: '', scroll: 0 };
+  state = { page: 'home', doc: null, docs: [], docsState: 'loading', q: '', book: 'All', showAll: false, enroll: false, adm: false, menu: false, bad: {}, gi: 0, lb: -1, toast: '', toastOk: true, sending: false, formErr: '', formSrc: '', formWa: '', scroll: 0 };
 
   componentDidMount() {
     this.readHash();
@@ -1120,7 +1121,7 @@ class Component extends DCLogic {
     if (fd.get('website')) return;
     const cls = String(fd.get('class') || '');
     if (!ALLOWED_CLASSES.includes(cls)) {
-      this.setState({ formErr: 'Please select a class from LKG to Class 5.', formSrc: src, formWa: '' });
+      this.setState({ formErr: 'Please select a class from Play to Class 12.', formSrc: src, formWa: '' });
       const sel = form.querySelector('select[name="class"]'); if (sel) sel.focus();
       return;
     }
@@ -1226,7 +1227,7 @@ class Component extends DCLogic {
 
       testimonials: TESTI.map(t => { const img = this.photo(t[1]); return { name: t[0], quote: t[2], initial: img ? '' : t[0][0], photo: img ? h('img', { src: img, alt: '', loading: 'lazy', onError: () => this.setState(x => ({ bad: { ...x.bad, [img]: true } })) }) : null }; }),
 
-      team: TEAM.map((m, i) => { const img = this.photo(m.img); return { ...m, img, el: img ? this.img(img, m.name) : null, noImg: !img, open: s.open === i, msgId: 'team-msg-' + i, btn: s.open === i ? 'Close message' : 'Read message', icon: s.open === i ? 'bi bi-chevron-up' : 'bi bi-chevron-down', toggle: () => this.setState(x => ({ open: x.open === i ? -1 : i })) }; }),
+      team: TEAM.map(m => { const img = this.photo(m.img); return { ...m, img, el: img ? this.img(img, m.name) : null, noImg: !img }; }),
       programPage: PROGRAM_PAGE.map((p, i) => { const img = this.photo(PHOTOS.programs[i]); return { num: p[0], title: p[1], text: p[2], img, el: img ? this.img(img, p[1], 'cover') : null, cls: 'pp-row' + (img ? ' has-photo' : '') + (i % 2 ? ' pp-flip' : '') }; }),
       steps: STEPS.map((x, i) => ({ title: x[0], text: x[1], icon: 'bi bi-' + ['chat-heart', 'file-earmark-text', 'people', 'patch-check'][i % 4] })),
       requiredDocs: REQ, whyChoose: WHY_CHOOSE,

@@ -19,7 +19,7 @@
     ['.cta-band h2', 'left'], ['.cta-band .btn', 'right'],
     // About
     ['.about-media', 'left'], ['.about-text > *', 'up'], ['.stats > li', 'up'],
-    ['.value-grid > li', 'up'], ['.facts > li', 'up'], ['.team > .profile', 'up'],
+    ['.value-grid > li', 'up'], ['.facts > li', 'up'], ['.team > .tm', 'up'],
     // Program
     ['.pp-row', 'up'], ['.pp-closing', 'zoom'],
     // Admission
